@@ -134,6 +134,22 @@
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.4;
+  text-wrap: balance;
+}
+
+/* app/wrap.ts의 의미 단위 묶음(NBSP)과 짝. semantic-wrap의 balance 전략처럼 허용된 경계 안에서 줄 길이를 고르게 */
+.lead,
+.sectionLead,
+.whyGrid p,
+.featureList p,
+.whoGrid p,
+.steps p,
+.faq summary,
+.faq p,
+.closing p,
+.officialTitle,
+.official .postText {
+  text-wrap: balance;
 }
 
 .lead,

@@ -33,6 +33,8 @@ vercel --prod      # 운영 수동 배포. 보통은 불필요: GitHub cheng80/b
 
 Server Components만 쓴다. 클라이언트 JS·상태 관리·이미지 파일이 없다. FAQ는 `details`/`summary`.
 
+- `app/wrap.ts` — 의미 단위 줄바꿈 `sw(text, maxChars)`. semantic-wrap(`@semantic-wrap/core`·`@semantic-wrap/ko`, ESM, Node 22+) 한국어 제목 모델을 빌드 시 서버에서만 돌려, 모델이 구 안쪽으로 본 공백을 NBSP로 바꾼다. 제목·리드·본문·FAQ·공식 카드 문구가 `page.tsx`에서 이 함수를 거치며, 짝이 되는 CSS는 `page.module.css`의 `text-wrap: balance` 묶음 규칙이다. 예산 상수(H1·H2·H3·LEAD·BODY)는 실제 글자 폭으로 시뮬레이션해 고른 값이니 바꾸려면 다시 재본다. 카피 표와 대조할 때 NBSP는 공백으로 본다. 모델이 어색하게 자르는 제목(현재 h1·피드 제목)은 앞 구만 `sw()`에 넣고 뒤 구를 `.nowrap` span으로 손 지정한다.
+
 - `app/site.ts` — `SERVICE`("빌드로그")와 `TAGLINE`. 서비스 이름은 여기서만 바꾼다. 바꾸면 `page.tsx`·`layout.tsx`의 조사(는/은)를 확인한다.
 - `app/layout.tsx` — `lang="ko"`, Pretendard(jsDelivr CDN `<link>`), 메타데이터가 `site.ts`를 사용.
 - `app/globals.css` — `DESIGN.md` 토큰을 CSS 변수로 옮긴 것. 색·간격·모서리를 바꾸려면 `DESIGN.md`를 먼저 고친다. `--header-h`가 `scroll-padding-top`으로 앵커 도착 위치를 보정한다(767px 이하 92px).

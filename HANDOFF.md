@@ -8,8 +8,8 @@
 |---|---|
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog/` (Next.js 프로젝트 + 기획 문서). 이 파일은 저장소 루트에 있다 |
-| 현재 단계 | **v2.3(Impeccable 규칙 적용 + 목업 그림자 + 예시 캡션 + 파랑 전환) 커밋·push 완료, 운영 자동 배포** |
-| 바로 할 일 | 운영 URL에서 v2.3 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
+| 현재 단계 | **v2.4(semantic-wrap 의미 단위 줄바꿈) 커밋·push 완료, 운영 자동 배포** |
+| 바로 할 일 | 운영 URL에서 v2.4 줄바꿈 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
 | 공개 URL | **https://buildlog-opal.vercel.app** (운영, 공개). `buildlog-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
@@ -35,7 +35,8 @@
 7. 사용자 "impeccable.style 스킬 규칙을 우리 디자인에 적용할 부분 검토" → 규칙 61개 + craft-floor 수동 대조 → "권장안 모두 적용" → v2.3: 카드 4연속 해체(기능·누구에게·시작하기), 히어로 첫 화면 개선, 한글 제목 행간, 색 배경 위 회색 글자, 전환 150ms, 헤더 blur 제거, 글자 크기·모서리·굵기 토큰 정리, `DESIGN.md` 1.1. 미커밋. 판단 항목 4개는 손대지 않음.
 8. 사용자 "예시 이미지가 누를 수 없는데 페이지와 깊이가 같아 경계가 흐리다. 프레임에 그림자를" → 목업 프레임 6종에만 `--shadow-mock`. 규칙: 페이지 내용은 평평, 화면 캡처는 떠 있음. 린트가 테두리+그림자 겹침을 잡아도 목업 프레임은 유지. 이후 "아직 약하다" → 진하게, "흐림 강도를 약하게" → blur 작게(진하고 또렷한 그림자 선호), "우측 하단으로 향하는 게 더 명확" → x 오프셋 14/6/1px 추가.
 9. 사용자 "'화면 속 게시물은 예시입니다' 캡션이 눈에 안 띈다. 색이 다르거나 박스" → `.caption`을 primary 글자 + 점선 알약 박스로. `DESIGN.md` `example-caption`.
-10. 사용자 "보라색은 걷어 내자. 다른 색 추천" → 코발트 파랑 `#1e4fd8`(추천)·잉크 블랙·번트 오렌지 3안 제시, 파랑을 개발 서버에 미리보기 → "커밋/푸시"로 파랑 확정. 파비콘·OG 이미지 재렌더·문서 동기화 후 커밋·push.
+10. 사용자 "보라색은 걷어 내자. 다른 색 추천" → 코발트 파랑 `#1e4fd8`(추천)·잉크 블랙·번트 오렌지 3안 제시, 파랑을 개발 서버에 미리보기 → "커밋/푸시"로 파랑 확정. 파비콘·OG 이미지 재렌더·문서 동기화 후 커밋·push(12701b7).
+11. 사용자 "semantic-wrap 설치 후 모든 화면 텍스트 검사", "필요시 폭도 조절" → `app/wrap.ts`(빌드 시 서버에서 모델 실행, NBSP 삽입, 클라이언트 JS 0) + `text-wrap: balance`. 외톨이 어절 45→0. 폭은 시뮬레이션상 이득이 없어 그대로. 피드 제목은 사용자 지적으로 손 지정. 커밋·push.
 
 ## 4. 다음 순서
 
@@ -70,7 +71,8 @@
 | `docs/04`, `docs/README.md`, `AGENTS.md` | v2.1. 커밋됨 |
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
 | `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
-| Git | `origin` = https://github.com/cheng80/buildlog.git (push 완료). 마지막 커밋: v2.3 Impeccable 규칙 적용·목업 그림자·파랑 전환 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
+| `app/wrap.ts`(신규) `app/page.tsx` `app/page.module.css` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | v2.4 semantic-wrap. 커밋됨 |
+| Git | `origin` = https://github.com/cheng80/buildlog.git (push 완료). 마지막 커밋: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
 
 ## 7. 환경 메모
 

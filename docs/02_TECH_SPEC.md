@@ -13,6 +13,7 @@
 | 렌더링 | 정적 사전 렌더링. Server Components만 사용 | 방문자마다 달라지는 내용 없음. FAQ도 `details`라 Client Component 불필요 |
 | 스타일 | CSS Modules + `app/globals.css`의 CSS 변수 | 토큰 값은 루트 [`DESIGN.md`](../DESIGN.md)를 그대로 옮긴다 |
 | 디자인 기준 | [`DESIGN.md`](../DESIGN.md) (awesome-design-md Pinterest 기반, 색은 자체) | 색·서체·간격·모서리·컴포넌트의 정본 |
+| 줄바꿈 | `@semantic-wrap/core` + `@semantic-wrap/ko` 0.4 (Apache-2.0), `app/wrap.ts` | 한국어 구 경계 모델을 빌드 시 서버에서만 실행해 NBSP를 넣는다. React 통합 패키지는 쓰지 않으며 클라이언트 JS 0 유지 |
 | 서체 | Pretendard (jsDelivr CDN CSS `<link>`) + 시스템 한글 서체 대체 | 한글 제목 품질. 추가 npm 의존성 없음. CDN 실패 시 시스템 서체로 표시 |
 | 시각 자료 | HTML/CSS + 인라인 SVG 아이콘 | 기획서 `BR-006`. 이미지 파일·`next/image` 기본 사용 안 함. 실제 스크린샷이 생기면 그때 `next/image` 도입 |
 | 백엔드 / DB / 인증 / 분석 | 없음 | 사용자 입력·서비스 기능 없음 |

@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import { SERVICE, TAGLINE } from "./site";
+import { sw, H1, H2, H3, LEAD, BODY } from "./wrap";
 
 /* ---------- 예시 데이터 (모두 허구) ---------- */
 type Kind = "timer" | "garden" | "recipe";
@@ -221,8 +222,8 @@ function Official({ label, title, body }: { label: string; title: string; body: 
         <span className={styles.logoMark} aria-hidden="true" />
         {SERVICE} · {label}
       </p>
-      <p className={styles.officialTitle}>{title}</p>
-      <p className={styles.postText}>{body}</p>
+      <p className={styles.officialTitle}>{sw(title, H3)}</p>
+      <p className={styles.postText}>{sw(body, BODY)}</p>
     </article>
   );
 }
@@ -280,11 +281,13 @@ export default function Home() {
           <div className={styles.heroText}>
             <p className={styles.eyebrow}>{TAGLINE}</p>
             <h1 id="hero-title" className={styles.h1}>
-              오늘 만든 것을 올리면, <span className={styles.nowrap}>프로젝트가 알려집니다</span>
+              {sw("오늘 만든 것을 올리면,", H1)} <span className={styles.nowrap}>프로젝트가 알려집니다</span>
             </h1>
             <p className={styles.lead}>
-              {SERVICE}는 앱, 웹, 게임을 만드는 개발자의 SNS입니다. 스크린샷이나 유튜브 링크를 붙여 올리면 게시물이
-              피드에 뜨고, 같은 게시물이 프로젝트 페이지에 개발 기록으로 쌓입니다.
+              {sw(
+                `${SERVICE}는 앱, 웹, 게임을 만드는 개발자의 SNS입니다. 스크린샷이나 유튜브 링크를 붙여 올리면 게시물이 피드에 뜨고, 같은 게시물이 프로젝트 페이지에 개발 기록으로 쌓입니다.`,
+                LEAD,
+              )}
             </p>
             <div className={styles.actions}>
               <a href="#feed" className={styles.primary}>화면 둘러보기</a>
@@ -326,20 +329,20 @@ export default function Home() {
         <div className={styles.band}>
           <section id="why" className={styles.section} aria-labelledby="why-title">
             <div className={styles.center}>
-              <h2 id="why-title" className={styles.h2}>만든 것은 많은데, 알리기는 어렵습니다</h2>
+              <h2 id="why-title" className={styles.h2}>{sw("만든 것은 많은데, 알리기는 어렵습니다", H2)}</h2>
               <p className={styles.sectionLead}>
-                개발자는 매일 무언가를 만들지만 그 과정은 여기저기 흩어지고, 프로젝트는 출시 날 하루만 알려집니다.
+                {sw("개발자는 매일 무언가를 만들지만 그 과정은 여기저기 흩어지고, 프로젝트는 출시 날 하루만 알려집니다.", LEAD)}
               </p>
             </div>
             <ul className={styles.whyGrid}>
               {why.map((w, i) => (
                 <li key={w.title}>
                   <Icon name={(["scatter", "calendar", "noise"] as const)[i]} className={styles.whyIcon} />
-                  <h3 className={styles.h3}>{w.title}</h3>
-                  <p className={styles.problem}>{w.problem}</p>
+                  <h3 className={styles.h3}>{sw(w.title, H3)}</h3>
+                  <p className={styles.problem}>{sw(w.problem, BODY)}</p>
                   <p className={styles.answer}>
                     <span className={styles.answerTag}>{SERVICE}에서는</span>
-                    {w.answer}
+                    {sw(w.answer, BODY)}
                   </p>
                 </li>
               ))}
@@ -351,10 +354,12 @@ export default function Home() {
         <section id="post" className={`${styles.section} ${styles.split}`} aria-labelledby="post-title">
           <div>
             <p className={styles.kicker}>올리기</p>
-            <h2 id="post-title" className={styles.h2}>링크 하나 붙이면 게시물이 됩니다</h2>
+            <h2 id="post-title" className={styles.h2}>{sw("링크 하나 붙이면 게시물이 됩니다", H2)}</h2>
             <p className={styles.sectionLead}>
-              입력창은 하나뿐입니다. 스크린샷, GIF, 유튜브 영상 링크, GitHub 링크를 붙이고 한 줄만 쓰면 알맞은 카드로
-              바뀝니다. 유튜브에 올려 둔 개발 영상도 그대로 게시물이 됩니다.
+              {sw(
+                "입력창은 하나뿐입니다. 스크린샷, GIF, 유튜브 영상 링크, GitHub 링크를 붙이고 한 줄만 쓰면 알맞은 카드로 바뀝니다. 유튜브에 올려 둔 개발 영상도 그대로 게시물이 됩니다.",
+                LEAD,
+              )}
             </p>
             <ul className={styles.pairs}>
               <li><Icon name="image" /><span>스크린샷, GIF</span><em>이미지 게시물</em></li>
@@ -393,10 +398,14 @@ export default function Home() {
           <section id="feed" className={`${styles.section} ${styles.split} ${styles.reverse}`} aria-labelledby="feed-title">
             <div>
               <p className={styles.kicker}>피드</p>
-              <h2 id="feed-title" className={styles.h2}>만들어지는 중인 프로젝트를 봅니다</h2>
+              <h2 id="feed-title" className={styles.h2}>
+                {sw("만들어지는 중인", H2)} <span className={styles.nowrap}>프로젝트를 봅니다</span>
+              </h2>
               <p className={styles.sectionLead}>
-                여러 개발자의 새 게시물이 한 피드에 흐릅니다. 사용자 게시물 사이에 {SERVICE}의 공식 카드가 섞여 있어,
-                게시물이 적은 날에도 피드가 비지 않습니다.
+                {sw(
+                  `여러 개발자의 새 게시물이 한 피드에 흐릅니다. 사용자 게시물 사이에 ${SERVICE}의 공식 카드가 섞여 있어, 게시물이 적은 날에도 피드가 비지 않습니다.`,
+                  LEAD,
+                )}
               </p>
               <ul className={styles.pairs}>
                 <li><Icon name="tag" /><span>오늘의 만들기 주제</span><em>무엇을 올릴지 알려 주는 카드</em></li>
@@ -426,11 +435,12 @@ export default function Home() {
         <section id="project" className={`${styles.section} ${styles.split}`} aria-labelledby="project-title">
           <div>
             <p className={styles.kicker}>프로젝트 페이지</p>
-            <h2 id="project-title" className={styles.h2}>게시물은 프로젝트 페이지에 기록으로 쌓입니다</h2>
+            <h2 id="project-title" className={styles.h2}>{sw("게시물은 프로젝트 페이지에 기록으로 쌓입니다", H2)}</h2>
             <p className={styles.sectionLead}>
-              프로젝트마다 소개, 스크린샷, 사용한 기술, 링크가 있는 페이지가 생깁니다. 올린 게시물과 새 버전이
-              타임라인으로 쌓이고, 새 기록을 올릴 때마다 프로젝트가 피드에 다시 나타납니다. 이 페이지 링크 하나로
-              프로젝트 전체를 소개할 수 있습니다.
+              {sw(
+                "프로젝트마다 소개, 스크린샷, 사용한 기술, 링크가 있는 페이지가 생깁니다. 올린 게시물과 새 버전이 타임라인으로 쌓이고, 새 기록을 올릴 때마다 프로젝트가 피드에 다시 나타납니다. 이 페이지 링크 하나로 프로젝트 전체를 소개할 수 있습니다.",
+                LEAD,
+              )}
             </p>
           </div>
 
@@ -473,8 +483,8 @@ export default function Home() {
               {features.map((f) => (
                 <li key={f.title}>
                   <Icon name={f.icon} className={styles.featureIcon} />
-                  <h3 className={styles.h3}>{f.title}</h3>
-                  <p>{f.body}</p>
+                  <h3 className={styles.h3}>{sw(f.title, H3)}</h3>
+                  <p>{sw(f.body, BODY)}</p>
                 </li>
               ))}
             </ul>
@@ -489,8 +499,8 @@ export default function Home() {
           <ul className={styles.whoGrid}>
             {who.map((w) => (
               <li key={w.title}>
-                <h3 className={styles.h3}>{w.title}</h3>
-                <p>{w.body}</p>
+                <h3 className={styles.h3}>{sw(w.title, H3)}</h3>
+                <p>{sw(w.body, BODY)}</p>
               </li>
             ))}
           </ul>
@@ -506,8 +516,8 @@ export default function Home() {
               {steps.map((s, i) => (
                 <li key={s.title}>
                   <span className={styles.stepNo} aria-hidden="true">{i + 1}</span>
-                  <h3 className={styles.h3}>{s.title}</h3>
-                  <p>{s.body}</p>
+                  <h3 className={styles.h3}>{sw(s.title, H3)}</h3>
+                  <p>{sw(s.body, BODY)}</p>
                 </li>
               ))}
             </ol>
@@ -520,8 +530,8 @@ export default function Home() {
           <div className={styles.faq}>
             {faqs.map((f, i) => (
               <details key={f.q} open={i === 0}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
+                <summary>{sw(f.q, H3)}</summary>
+                <p>{sw(f.a, BODY)}</p>
               </details>
             ))}
           </div>
@@ -530,8 +540,8 @@ export default function Home() {
         {/* S-10 마무리 */}
         <section id="closing" className={styles.section} aria-labelledby="closing-title">
           <div className={styles.closing}>
-            <h2 id="closing-title" className={styles.h2}>오늘 만든 화면 한 장부터 올려 보세요</h2>
-            <p>완성하지 않아도 괜찮습니다. 만드는 과정이 그대로 프로젝트 소개가 됩니다.</p>
+            <h2 id="closing-title" className={styles.h2}>{sw("오늘 만든 화면 한 장부터 올려 보세요", H2)}</h2>
+            <p>{sw("완성하지 않아도 괜찮습니다. 만드는 과정이 그대로 프로젝트 소개가 됩니다.", LEAD)}</p>
             <a href="#feed" className={styles.primary}>화면 둘러보기</a>
           </div>
         </section>
