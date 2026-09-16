@@ -7,7 +7,7 @@
 - [x] 단계 1 — 서비스 구조 확인(ChatGPT 대화 재검토), 기획 v2.1, `DESIGN.md`
 - [x] 단계 2 — 소개 페이지 v2.1 구현 (HTML/CSS 화면)
 - [x] 단계 3 — 로컬 검증 (lint·typecheck·반응형·앵커·키보드·FAQ)
-- [ ] 단계 4 — 사용자 화면 확인 → 커밋 → Vercel 배포
+- [x] 단계 4 — 커밋 → GitHub push → Vercel 첫 배포(운영) → 공개 URL https://buildlog-opal.vercel.app 확인
 
 ## 2. 진행 중인 계획
 
@@ -40,7 +40,7 @@
 
 1. 사용자에게 localhost:3000 v2.2 화면 확인 받기.
 2. ~~커밋~~ 완료(2026-09-16, main). 원격 `origin`(GitHub cheng80/buildlog)에 push 완료.
-3. 공유 이미지 준비 후 Vercel Preview 배포, 공개 URL 재검증, 9절 갱신.
+3. GitHub 저장소를 Vercel에 연결(push 시 자동 배포). `layout.tsx`에 `metadataBase`(https://buildlog-opal.vercel.app)와 공유 이미지(OG) 추가 후 `vercel --prod`.
 
 ## 7. 인수인계
 
@@ -67,4 +67,5 @@
 | 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-16 | v2.2 | CURRENT | Playwright(Chrome) 360·390·768·1440px 가로 넘침 없음, 모든 `#` 앵커 대상 존재, 제목이 고정 헤더에 안 가림, Tab 순서 실제 링크·FAQ만, 첫 FAQ 기본 펼침·Enter로 둘째 열림. 스크린샷 육안 확인 |
 | 첫 화면 테스트(`BR-007`) | INCOMPLETE | NONE | 2026-09-16 | v2.1 | CURRENT | 사용자 확인 대기. v1.x는 FAIL(사용자 판정) |
 | 실기기·스크린리더 | NOT_RUN | NONE | - | - | UNKNOWN | 미확인 |
-| 배포·공개 URL | NOT_RUN | NONE | - | - | UNKNOWN | 배포하지 않음 |
+| 배포 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | `vercel deploy --yes --scope virtues1` 첫 배포 → 운영(Ready). 프로젝트 `buildlog`, 팀 `virtues1`, Next.js·Node 24.x. 별칭 https://buildlog-virtues1.vercel.app , https://buildlog-opal.vercel.app . `vercel curl`로 제목 '빌드로그 · 개발 과정을 공유하는 프로젝트 SNS' 확인 |
+| 공개 URL 접근 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | **공개 주소 https://buildlog-opal.vercel.app** 200. Playwright로 360·1440px 가로 넘침 없음, 앵커 9개, Tab 순서, FAQ 확인. Deployment Protection은 기본값(`all_except_custom_domains`) 그대로 — 운영 도메인(opal)은 공개, `buildlog-virtues1.vercel.app`과 배포별 URL은 302 → SSO(로그인 필요). 설정 변경 API 호출(`vercel api … PATCH`)은 400으로 실패했고 변경 불필요로 판단 |

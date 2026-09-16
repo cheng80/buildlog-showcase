@@ -9,7 +9,8 @@
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog/` (Next.js 프로젝트 + 기획 문서). 이 파일은 저장소 루트에 있다 |
 | 현재 단계 | **v2.2 보강 커밋 완료, 사용자 화면 확인 대기** |
-| 바로 할 일 | 사용자 v2.2 화면 확인 → 공유 이미지 → Vercel |
+| 바로 할 일 | GitHub↔Vercel 연결(push 자동 배포) → `metadataBase`·OG 이미지 → `vercel --prod` |
+| 공개 URL | **https://buildlog-opal.vercel.app** (운영, 공개). `buildlog-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
 
@@ -66,4 +67,4 @@
 - 검증 스크립트: 세션 scratchpad의 `check.mjs`(playwright-core, `channel: "chrome"`)로 360·390·768·1440px·앵커·Tab·FAQ 확인. 새 세션에서는 scratchpad에 `npm i playwright-core` 후 재작성 필요.
 - `next dev`가 `AGENTS.md` 끝에 안내 블록을 자동으로 붙임. 지우지 말고 함께 커밋.
 - 디자인 기반: awesome-design-md의 Pinterest DESIGN.md(MIT). Instagram 항목 없음. 강조색은 자체 보라 `#5b3df5`.
-- Vercel 프로젝트·배포·도메인 없음.
+- Vercel: 팀 `virtues1`, 프로젝트 `buildlog`(첫 배포가 운영으로 들어감, 2026-09-16). 별칭 https://buildlog-virtues1.vercel.app . `.vercel/`은 Git 제외. CLI 전역 설치됨(`vercel` 59.x). Deployment Protection 기본값 유지: 운영 도메인 https://buildlog-opal.vercel.app 은 공개, 나머지 별칭·배포 URL은 302 → SSO(`vercel curl <url>`로 확인). 배포: `vercel`(Preview) / `vercel --prod`(운영). GitHub 연동은 아직 안 됨(수동 배포).

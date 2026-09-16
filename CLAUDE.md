@@ -15,7 +15,11 @@ npm run dev        # http://localhost:3000 (Turbopack). AGENTS.md 끝에 Next �
 npm run lint       # eslint .
 npm run typecheck  # next typegen && tsc --noEmit
 npm run build      # 운영 빌드. 출력에서 `/` 가 ○(정적)인지 확인
+vercel             # Preview 배포 (팀 virtues1, 프로젝트 buildlog. .vercel/은 Git 제외)
+vercel --prod      # 운영 배포 → https://buildlog-opal.vercel.app (공개). 사용자가 요청할 때만
 ```
+
+배포 URL 중 `buildlog-virtues1.vercel.app`과 배포별 URL은 Vercel 로그인(SSO)으로 보호되니 확인은 공개 도메인 또는 `vercel curl <url>`로 한다.
 
 브라우저 검증은 저장소에 스크립트가 없다. 세션 scratchpad에 `npm i playwright-core` 후 `chromium.launch({ channel: "chrome" })`으로 360·390·768·1440px 가로 넘침(`scrollWidth > clientWidth`), 모든 `a[href^="#"]` 대상 존재, 앵커 도착 시 제목이 고정 헤더 아래에 있는지, Tab 순서가 실제 링크와 FAQ만 거치는지, `details` Enter 동작을 확인한다. 결과는 `docs/03_PROJECT_STATUS.md` 9절에 `PASS / FAIL / INCOMPLETE / NOT_RUN`으로 기록하고, 실행하지 않은 검증을 통과로 쓰지 않는다.
 
