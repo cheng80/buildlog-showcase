@@ -1,6 +1,6 @@
 # 소개 사이트 기술 명세 · Next.js / Vercel
 
-> 버전: 2.1 · 2026-09-16
+> 버전: 2.2 · 2026-09-16
 >
 > 소개 사이트의 제작 기준이다. 실제 서비스의 기술 스택·DB·API는 설계하지 않는다. v1.x의 인포그래픽 생성 파이프라인은 폐기했다.
 
@@ -26,7 +26,8 @@
 | `app/site.ts` | 서비스 이름 `SERVICE`(빌드로그)와 태그라인. 이름 변경은 여기서만 |
 | `app/layout.tsx` | `lang="ko"`, Pretendard 링크, 메타데이터(`site.ts` 사용) |
 | `app/globals.css` | `DESIGN.md` 토큰을 CSS 변수로, 기본 리셋·포커스·스크롤 보정 |
-| `app/page.tsx` | 헤더·7개 섹션·푸터. 예시 데이터(프로젝트·게시물·타임라인)와 목업 컴포넌트(`Post`, `Official`, `Shot`, `Timeline`)를 한 파일에 둔다 |
+| `app/icon.svg` | 파비콘(보라 둥근 사각 + 흰 L). Next가 자동 연결. 기본 `favicon.ico`는 삭제 |
+| `app/page.tsx` | 헤더·10개 섹션·푸터. 예시 데이터(프로젝트·게시물·타임라인)와 목업 컴포넌트(`Post`, `Official`, `Shot`, `Timeline`)를 한 파일에 둔다 |
 | `app/page.module.css` | 섹션·목업 스타일 |
 | `components/` | `page.tsx`가 과하게 길어질 때만 목업(게시물 카드, 프로필 그리드, 아이콘) 분리 |
 
@@ -34,7 +35,7 @@
 
 ## 3. 구현 규칙
 
-- **앵커(`FR-001`):** `<a href="#feed">` 등 일반 링크. 섹션 ID는 `hero post feed project start faq closing`. 고정 헤더 높이는 `scroll-padding-top`으로 보정.
+- **앵커(`FR-001`):** `<a href="#feed">` 등 일반 링크. 섹션 ID는 `hero why post feed project features who start faq closing`. 고정 헤더 높이는 `scroll-padding-top`으로 보정.
 - **목업(`FR-002`, `BR-003`):** 게시물·프로필·버튼 모양은 `div`/`span`/`article`. `button`·`a`·`tabindex` 금지. 화면 속 글자는 실제 텍스트, 장식 도형·아이콘은 `aria-hidden="true"`. 각 목업은 `figure` + `figcaption`(예시 캡션).
 - **게시물 이미지:** `DESIGN.md` ‘게시물 이미지’ 표의 팔레트로 CSS 그라디언트·격자 표현. 1:1 `aspect-ratio`.
 - **FAQ(`FR-003`):** `details`/`summary`, 첫 항목 `open`.

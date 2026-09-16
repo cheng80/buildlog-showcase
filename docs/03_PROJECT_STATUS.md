@@ -1,6 +1,6 @@
 # 빌드로그 소개 사이트 프로젝트 현황
 
-> 갱신일: 2026-09-16 · 문서 리비전: 2.1
+> 갱신일: 2026-09-16 · 문서 리비전: 2.2
 
 ## 1. 로드맵
 
@@ -15,7 +15,7 @@
 
 ## 3. 현재 작업
 
-**소개 페이지 v2.1 구현·로컬 검증·커밋 완료. 사용자의 화면 확인 대기.** 서비스 이름은 사용자가 **빌드로그**로 정했고 `app/site.ts` 한 곳에서 관리한다.
+**v2.1 커밋 뒤 사용자가 "아직 미완성 같아 보인다"고 해서 v2.2로 보강, 커밋 완료.** 히어로 재배치, 앱 UI 목업 사실감 보강, 왜·기능·누구에게 섹션 추가, 푸터 보강, 파비콘. lint·typecheck·360~1440px·앵커·Tab·FAQ 재확인. 서비스 이름은 사용자가 **빌드로그**로 정했고 `app/site.ts` 한 곳에서 관리한다.
 
 오늘의 흐름: v1.x 구현 → 사용자 "무슨 사이트 홍보인지 모르겠다" → 인포그래픽 폐기·인스타그램형 부각 요청 → v2.0 기획 → 사용자 "피드형 SNS 구조가 맞나? 구조가 안 그려진다" → ChatGPT 기획 대화 전체를 추출해 검토 → 3층 구조 확인(사용자 "맞음") → 화면을 직접 만들어 보여주기로 하고 v2.1 구현 → 이름 결정.
 
@@ -32,15 +32,15 @@
 |---|---|---|
 | 첫 화면 테스트(`BR-007`) | 사용자 확인 대기 | 확인 후 8절 체크 |
 | 실제 스크린샷 | 없음 | CSS로 그린 예시 화면 유지 |
-| favicon·공유 이미지 | Next 기본 / 없음 | 배포 전 준비 |
+| 공유 이미지(OG) | 없음 | 배포 전 준비. 파비콘은 `app/icon.svg`로 해결 |
 | 실제 서비스 주소·가입 링크 | 없음 | 링크 두지 않음(`BR-004`) |
 | Pretendard | jsDelivr CDN CSS 링크 | 오프라인이면 시스템 서체로 표시(정상 동작) |
 
 ## 6. 다음 작업
 
-1. 사용자에게 localhost:3000 화면 확인 받기. 수정 요청이 있으면 해당 섹션만 고친다.
+1. 사용자에게 localhost:3000 v2.2 화면 확인 받기.
 2. ~~커밋~~ 완료(2026-09-16, main, 원격 없음).
-3. favicon·공유 이미지 준비 후 Vercel Preview 배포, 공개 URL 재검증, 9절 갱신.
+3. 공유 이미지 준비 후 Vercel Preview 배포, 공개 URL 재검증, 9절 갱신.
 
 ## 7. 인수인계
 
@@ -54,6 +54,7 @@
 
 ## 8. 변경된 계약
 
+- v2.2: 섹션 ID `#hero #why #post #feed #project #features #who #start #faq #closing`. 푸터 링크 7개. `app/icon.svg` 추가, `app/favicon.ico` 삭제.
 - v2.1: 섹션 ID `#hero #post #feed #project #start #faq #closing`. 헤더 링크 '올리기 / 피드 / 프로젝트 / 시작하기'. FAQ 4개. 예시 프로젝트 3개. 서비스명 상수 `app/site.ts`. 서비스명 빌드로그.
 - v2.0: 인포그래픽 파이프라인·`IG/UI` 프롬프트 삭제, `DESIGN.md` 신설.
 
@@ -61,9 +62,9 @@
 
 | 항목 | 결과 | 근거 | 날짜 | 리비전 | 유효성 | 출처 / 공백 |
 |---|---|---|---|---|---|---|
-| 정적 분석·타입 | PASS | RECHECKED | 2026-09-16 | v2.1 | CURRENT | `npm run lint`, `npm run typecheck` 통과 |
-| 운영 빌드 | PASS | RECHECKED | 2026-09-16 | v2.1 | CURRENT | `npm run build`, `/` 정적(○) |
-| 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-16 | v2.1 | CURRENT | Playwright(Chrome) 360·390·768·1440px 가로 넘침 없음, 모든 `#` 앵커 대상 존재, 제목이 고정 헤더에 안 가림, Tab 순서 실제 링크·FAQ만, 첫 FAQ 기본 펼침·Enter로 둘째 열림. 스크린샷 육안 확인 |
+| 정적 분석·타입 | PASS | RECHECKED | 2026-09-16 | v2.2 | CURRENT | `npm run lint`, `npm run typecheck` 통과 |
+| 운영 빌드 | PASS | RECHECKED | 2026-09-16 | v2.2 | CURRENT | `npm run build`, `/` 정적(○) |
+| 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-16 | v2.2 | CURRENT | Playwright(Chrome) 360·390·768·1440px 가로 넘침 없음, 모든 `#` 앵커 대상 존재, 제목이 고정 헤더에 안 가림, Tab 순서 실제 링크·FAQ만, 첫 FAQ 기본 펼침·Enter로 둘째 열림. 스크린샷 육안 확인 |
 | 첫 화면 테스트(`BR-007`) | INCOMPLETE | NONE | 2026-09-16 | v2.1 | CURRENT | 사용자 확인 대기. v1.x는 FAIL(사용자 판정) |
 | 실기기·스크린리더 | NOT_RUN | NONE | - | - | UNKNOWN | 미확인 |
 | 배포·공개 URL | NOT_RUN | NONE | - | - | UNKNOWN | 배포하지 않음 |
