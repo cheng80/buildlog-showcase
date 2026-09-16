@@ -38,7 +38,7 @@ Server Components만 쓴다. 클라이언트 JS·상태 관리·이미지 파일
 - `app/globals.css` — `DESIGN.md` 토큰을 CSS 변수로 옮긴 것. 색·간격·모서리를 바꾸려면 `DESIGN.md`를 먼저 고친다. `--header-h`가 `scroll-padding-top`으로 앵커 도착 위치를 보정한다(767px 이하 92px).
 - `app/page.tsx` — 페이지 전체가 한 파일. 위에서 아래로: 예시 데이터 상수(프로젝트 3개·타임라인·카피 배열) → `Icon`(인라인 SVG 경로 사전) → `Shot`(프로젝트 `Kind`별로 CSS만으로 그린 앱 화면: timer/garden/recipe) → 목업 조각 `Avatar`·`Post`·`Official`·`Timeline`·`FrameBar` → `Home`(헤더, 섹션 10개, 푸터). 섹션 ID는 `hero why post feed project features who start faq closing`이며 헤더·히어로·마무리·푸터 링크가 이 ID를 가리킨다.
 - `app/page.module.css` — 섹션 순서대로 주석 구분. 목업 클래스(`.post`, `.shot*`, `.frameBar`, `.timeline`)는 여러 섹션이 공유하므로 한 곳을 고치면 히어로·올리기·피드·프로젝트 섹션이 함께 바뀐다.
-- `app/icon.svg` — 파비콘. Next가 자동 연결.
+- `app/icon.svg` — 파비콘. `app/opengraph-image.png`(+`.alt.txt`) — 링크 공유 이미지. 둘 다 Next 파일 규칙으로 자동 연결. OG 소스는 `docs/og/og-source.html`이며 히어로 문구를 바꾸면 그 파일도 고치고 Playwright(1200×630)로 다시 스크린샷해 PNG를 교체한다.
 
 ## 이 저장소만의 규칙 (기획서 7절 BR-001~008)
 

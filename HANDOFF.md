@@ -9,7 +9,7 @@
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog/` (Next.js 프로젝트 + 기획 문서). 이 파일은 저장소 루트에 있다 |
 | 현재 단계 | **v2.2 보강 커밋 완료, 사용자 화면 확인 대기** |
-| 바로 할 일 | `layout.tsx`에 `metadataBase`(공개 주소)와 OG 공유 이미지 추가 → push(자동 배포) |
+| 바로 할 일 | 없음(배포·OG까지 완료). 사용자 요청 대기. 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
 | 공개 URL | **https://buildlog-opal.vercel.app** (운영, 공개). `buildlog-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
@@ -37,7 +37,7 @@
 
 1. 사용자가 localhost:3000 v2.2를 보고 판정. 수정 요청은 섹션 단위로 반영.
 2. ~~커밋~~ 완료(2026-09-16).
-3. favicon·공유 이미지 준비 → Vercel Preview → 공개 URL 재검증 → `03_PROJECT_STATUS.md` 9절.
+3. ~~파비콘·OG 이미지·Vercel 배포~~ 완료. OG 재생성 방법은 `docs/og/og-source.html` 머리말 주석.
 
 ## 5. 유지할 규칙
 

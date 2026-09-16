@@ -32,7 +32,7 @@
 |---|---|---|
 | 첫 화면 테스트(`BR-007`) | 사용자 확인 대기 | 확인 후 8절 체크 |
 | 실제 스크린샷 | 없음 | CSS로 그린 예시 화면 유지 |
-| 공유 이미지(OG) | 없음 | 배포 전 준비. 파비콘은 `app/icon.svg`로 해결 |
+| 공유 이미지(OG) | `app/opengraph-image.png`(1200×630) + `.alt.txt` | 소스 `docs/og/og-source.html`을 Playwright로 렌더링. 문구 바꾸면 재렌더링 |
 | 실제 서비스 주소·가입 링크 | 없음 | 링크 두지 않음(`BR-004`) |
 | Pretendard | jsDelivr CDN CSS 링크 | 오프라인이면 시스템 서체로 표시(정상 동작) |
 
@@ -40,7 +40,7 @@
 
 1. 사용자에게 localhost:3000 v2.2 화면 확인 받기.
 2. ~~커밋~~ 완료(2026-09-16, main). 원격 `origin`(GitHub cheng80/buildlog)에 push 완료.
-3. ~~GitHub↔Vercel 연결~~ 완료(main push → 운영 자동 배포 확인). `layout.tsx`에 `metadataBase`(https://buildlog-opal.vercel.app)와 공유 이미지(OG) 추가 후 push.
+3. ~~GitHub↔Vercel 연결, metadataBase·OG 이미지~~ 완료. 남은 것: 실기기·스크린리더 확인, 자체 도메인(있다면).
 
 ## 7. 인수인계
 
@@ -68,5 +68,6 @@
 | 첫 화면 테스트(`BR-007`) | INCOMPLETE | NONE | 2026-09-16 | v2.1 | CURRENT | 사용자 확인 대기. v1.x는 FAIL(사용자 판정) |
 | 실기기·스크린리더 | NOT_RUN | NONE | - | - | UNKNOWN | 미확인 |
 | 배포 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | `vercel deploy --yes --scope virtues1` 첫 배포 → 운영(Ready). 프로젝트 `buildlog`, 팀 `virtues1`, Next.js·Node 24.x. 별칭 https://buildlog-virtues1.vercel.app , https://buildlog-opal.vercel.app . `vercel curl`로 제목 '빌드로그 · 개발 과정을 공유하는 프로젝트 SNS' 확인 |
+| OG·메타데이터 | PASS | RECHECKED | 2026-09-16 | OG 커밋 | CURRENT | `npm run build` 결과 `/opengraph-image.png` 정적 생성, `index.html`에 og:title·description·locale·image(1200×630)·type, twitter:card=summary_large_image·image 출력 확인. `metadataBase`=https://buildlog-opal.vercel.app |
 | Git 자동 배포 | PASS | RECHECKED | 2026-09-16 | 9d54624 | CURRENT | GitHub cheng80/buildlog 연결됨. `main` push 후 source=git 운영 배포가 18초 만에 READY(commit 9d54624 확인) |
 | 공개 URL 접근 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | **공개 주소 https://buildlog-opal.vercel.app** 200. Playwright로 360·1440px 가로 넘침 없음, 앵커 9개, Tab 순서, FAQ 확인. Deployment Protection은 기본값(`all_except_custom_domains`) 그대로 — 운영 도메인(opal)은 공개, `buildlog-virtues1.vercel.app`과 배포별 URL은 302 → SSO(로그인 필요). 설정 변경 API 호출(`vercel api … PATCH`)은 400으로 실패했고 변경 불필요로 판단 |

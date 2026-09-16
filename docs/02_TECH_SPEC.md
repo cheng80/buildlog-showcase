@@ -27,6 +27,7 @@
 | `app/layout.tsx` | `lang="ko"`, Pretendard 링크, 메타데이터(`site.ts` 사용) |
 | `app/globals.css` | `DESIGN.md` 토큰을 CSS 변수로, 기본 리셋·포커스·스크롤 보정 |
 | `app/icon.svg` | 파비콘(보라 둥근 사각 + 흰 L). Next가 자동 연결. 기본 `favicon.ico`는 삭제 |
+| `app/opengraph-image.png` + `.alt.txt` | 링크 공유 이미지 1200×630. Next 파일 규칙으로 og:image·twitter:image 자동 출력. 소스는 `docs/og/og-source.html`(HTML/CSS)이며 Playwright 스크린샷으로 만든다 |
 | `app/page.tsx` | 헤더·10개 섹션·푸터. 예시 데이터(프로젝트·게시물·타임라인)와 목업 컴포넌트(`Post`, `Official`, `Shot`, `Timeline`)를 한 파일에 둔다 |
 | `app/page.module.css` | 섹션·목업 스타일 |
 | `components/` | `page.tsx`가 과하게 길어질 때만 목업(게시물 카드, 프로필 그리드, 아이콘) 분리 |
@@ -40,7 +41,7 @@
 - **게시물 이미지:** `DESIGN.md` ‘게시물 이미지’ 표의 팔레트로 CSS 그라디언트·격자 표현. 1:1 `aspect-ratio`.
 - **FAQ(`FR-003`):** `details`/`summary`, 첫 항목 `open`.
 - **반응형(`FR-004`):** 기준 폭 1440 / 1024 / 768 / 390 / 360px. 1023px 이하 1열(텍스트 먼저), 767px 이하 헤더 2줄.
-- **메타데이터:** 제목 `${SERVICE} · ${TAGLINE}`(빌드로그 · 개발 과정을 공유하는 프로젝트 SNS), 설명은 S-01 설명. `metadataBase`·canonical·공유 이미지는 공개 주소가 생긴 뒤 추가.
+- **메타데이터:** 제목 `${SERVICE} · ${TAGLINE}`, 설명은 S-01 설명, `metadataBase` = https://buildlog-opal.vercel.app, openGraph(type website, ko_KR, siteName), twitter card summary_large_image. 이미지는 파일 규칙(`opengraph-image.png`)이 처리.
 
 ## 4. 개인정보 / 데이터 / API
 
