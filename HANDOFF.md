@@ -8,8 +8,8 @@
 |---|---|
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog/` (Next.js 프로젝트 + 기획 문서). 이 파일은 저장소 루트에 있다 |
-| 현재 단계 | **v2.2 보강 커밋 완료, 사용자 화면 확인 대기** |
-| 바로 할 일 | 없음(배포·OG까지 완료). 사용자 요청 대기. 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
+| 현재 단계 | **v2.3(Impeccable 규칙 적용 + 목업 그림자 + 예시 캡션 + 파랑 전환) 커밋·push 완료, 운영 자동 배포** |
+| 바로 할 일 | 운영 URL에서 v2.3 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
 | 공개 URL | **https://buildlog-opal.vercel.app** (운영, 공개). `buildlog-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
@@ -32,10 +32,19 @@
 4. 대화 전체 추출·검토 → 3층 구조 제시 → 사용자 "맞음. 화면 자체는 안 그려짐. 제목은 서비스 이름이어야. 보는 사람이 직관적으로 알아야."
 5. 화면을 직접 HTML/CSS로 만들어 localhost:3000에서 보여줌 → 이름 **빌드로그** 결정 → 커밋(7fb821f).
 6. 사용자 "아직 미완성 같아 보인다" → v2.2: 히어로 재배치(제목 가운데 + 피드 창·프로젝트 창 나란히), 앱 UI 목업 사실감(타이머 버튼, 픽셀 정원, 레시피 검색), 섹션 추가(`#why` `#features` `#who`), 푸터 보강, 파비콘 `app/icon.svg`. 커밋 완료.
+7. 사용자 "impeccable.style 스킬 규칙을 우리 디자인에 적용할 부분 검토" → 규칙 61개 + craft-floor 수동 대조 → "권장안 모두 적용" → v2.3: 카드 4연속 해체(기능·누구에게·시작하기), 히어로 첫 화면 개선, 한글 제목 행간, 색 배경 위 회색 글자, 전환 150ms, 헤더 blur 제거, 글자 크기·모서리·굵기 토큰 정리, `DESIGN.md` 1.1. 미커밋. 판단 항목 4개는 손대지 않음.
+8. 사용자 "예시 이미지가 누를 수 없는데 페이지와 깊이가 같아 경계가 흐리다. 프레임에 그림자를" → 목업 프레임 6종에만 `--shadow-mock`. 규칙: 페이지 내용은 평평, 화면 캡처는 떠 있음. 린트가 테두리+그림자 겹침을 잡아도 목업 프레임은 유지. 이후 "아직 약하다" → 진하게, "흐림 강도를 약하게" → blur 작게(진하고 또렷한 그림자 선호), "우측 하단으로 향하는 게 더 명확" → x 오프셋 14/6/1px 추가.
+9. 사용자 "'화면 속 게시물은 예시입니다' 캡션이 눈에 안 띈다. 색이 다르거나 박스" → `.caption`을 primary 글자 + 점선 알약 박스로. `DESIGN.md` `example-caption`.
+10. 사용자 "보라색은 걷어 내자. 다른 색 추천" → 코발트 파랑 `#1e4fd8`(추천)·잉크 블랙·번트 오렌지 3안 제시, 파랑을 개발 서버에 미리보기 → "커밋/푸시"로 파랑 확정. 파비콘·OG 이미지 재렌더·문서 동기화 후 커밋·push.
 
 ## 4. 다음 순서
 
-1. 사용자가 localhost:3000 v2.2를 보고 판정. 수정 요청은 섹션 단위로 반영.
+1. ~~사용자가 v2.3을 보고 판정~~ → 그림자·캡션·색 피드백 반영 후 커밋·push 완료. 운영 URL에서 최종 확인.
+2. 판단 항목 결정: 히어로 태그라인 칩 제거? 섹션 위 라벨(올리기/피드/프로젝트 페이지) 제거? 피드 목업을 카드 대신 구분선으로? 타이머 민트 `#2dd4bf` 교체?
+3. ~~커밋·push~~ 완료(2026-09-16).
+
+이전:
+1. ~~사용자가 localhost:3000 v2.2를 보고 판정.~~
 2. ~~커밋~~ 완료(2026-09-16).
 3. ~~파비콘·OG 이미지·Vercel 배포~~ 완료. OG 재생성 방법은 `docs/og/og-source.html` 머리말 주석.
 
@@ -48,23 +57,25 @@
 - 추상어(기록·이야기·발견)보다 구체어(게시물·스크린샷·피드·프로젝트 페이지·유튜브 링크).
 - 카피를 바꾸면 "첫 화면만 보고 무슨 서비스인지 한 문장으로 말할 수 있나" 재확인.
 - 사용자에게 묻는 질문은 한글로만. `AskUserQuestion`은 세 번 거부됐으니 본문에 짧게 묻는 편이 낫다.
+- `DESIGN.md` 1.1 규칙: 아이콘·제목·본문 카드 3열을 섹션마다 반복하지 않는다, 페이지 카드는 평평하고 앱 화면 목업 프레임만 그림자로 띄운다, 색 배경 위 회색 글자 금지, 글자 크기는 램프(12/14/16/18/22/40/52px)만, 모서리는 토큰(6/12/16/32/full)만, 800 굵기는 로고·h1·h2만.
 
 ## 6. 파일 상태
 
 | 경로 | 상태 |
 |---|---|
-| `app/site.ts` `app/layout.tsx` `app/globals.css` | v2.1 커밋됨 |
-| `app/page.tsx` `app/page.module.css` `app/icon.svg`(신규) `app/favicon.ico`(삭제) | v2.2 보강. 커밋됨 |
+| `app/site.ts` `app/layout.tsx` | v2.1 커밋됨 |
+| `app/page.tsx` `app/page.module.css` `app/globals.css` `app/icon.svg` `app/opengraph-image.png` `docs/og/og-source.html` `DESIGN.md` `CLAUDE.md` `docs/01~03` `HANDOFF.md` | v2.3. 커밋됨 |
+| `app/icon.svg`(신규) `app/favicon.ico`(삭제) | v2.2 보강. 커밋됨 |
 | `docs/01~03` | v2.2 갱신. 커밋됨 |
-| `docs/04`, `docs/README.md`, `DESIGN.md`, `AGENTS.md` | v2.1. 커밋됨 |
+| `docs/04`, `docs/README.md`, `AGENTS.md` | v2.1. 커밋됨 |
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
 | `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
-| Git | `origin` = https://github.com/cheng80/buildlog.git (push 완료). 마지막 커밋: v2.2 보강 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
+| Git | `origin` = https://github.com/cheng80/buildlog.git (push 완료). 마지막 커밋: v2.3 Impeccable 규칙 적용·목업 그림자·파랑 전환 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
 
 ## 7. 환경 메모
 
-- 개발 서버 `npm run dev` → http://localhost:3000 (이번 세션에서 백그라운드 실행 중. 새 세션은 다시 실행).
+- 개발 서버 `npm run dev` → http://localhost:3000 (세션마다 다시 실행. v2.3 검증은 `npx next start -p 3011`로 빌드 결과를 띄워서 했다).
 - 검증 스크립트: 세션 scratchpad의 `check.mjs`(playwright-core, `channel: "chrome"`)로 360·390·768·1440px·앵커·Tab·FAQ 확인. 새 세션에서는 scratchpad에 `npm i playwright-core` 후 재작성 필요.
 - `next dev`가 `AGENTS.md` 끝에 안내 블록을 자동으로 붙임. 지우지 말고 함께 커밋.
-- 디자인 기반: awesome-design-md의 Pinterest DESIGN.md(MIT). Instagram 항목 없음. 강조색은 자체 보라 `#5b3df5`.
+- 디자인 기반: awesome-design-md의 Pinterest DESIGN.md(MIT). Instagram 항목 없음. 강조색은 자체 코발트 파랑 `#1e4fd8`(보라 폐기, 2026-09-16).
 - Vercel: 팀 `virtues1`, 프로젝트 `buildlog`(첫 배포가 운영으로 들어감, 2026-09-16). 별칭 https://buildlog-virtues1.vercel.app . `.vercel/`은 Git 제외. CLI 전역 설치됨(`vercel` 59.x). Deployment Protection 기본값 유지: 운영 도메인 https://buildlog-opal.vercel.app 은 공개, 나머지 별칭·배포 URL은 302 → SSO(`vercel curl <url>`로 확인). GitHub 연동 완료: `main` push → 운영 자동 배포(별칭 buildlog-git-main-virtues1.vercel.app), 다른 브랜치 push → Preview. CLI 수동 배포(`vercel`, `vercel --prod`)도 가능.

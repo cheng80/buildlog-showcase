@@ -469,10 +469,10 @@ export default function Home() {
             <div className={styles.center}>
               <h2 id="features-title" className={styles.h2}>한눈에 보는 기능</h2>
             </div>
-            <ul className={styles.featureGrid}>
+            <ul className={styles.featureList}>
               {features.map((f) => (
                 <li key={f.title}>
-                  <span className={styles.featureIcon}><Icon name={f.icon} /></span>
+                  <Icon name={f.icon} className={styles.featureIcon} />
                   <h3 className={styles.h3}>{f.title}</h3>
                   <p>{f.body}</p>
                 </li>

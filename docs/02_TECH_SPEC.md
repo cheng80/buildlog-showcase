@@ -26,7 +26,7 @@
 | `app/site.ts` | 서비스 이름 `SERVICE`(빌드로그)와 태그라인. 이름 변경은 여기서만 |
 | `app/layout.tsx` | `lang="ko"`, Pretendard 링크, 메타데이터(`site.ts` 사용) |
 | `app/globals.css` | `DESIGN.md` 토큰을 CSS 변수로, 기본 리셋·포커스·스크롤 보정 |
-| `app/icon.svg` | 파비콘(보라 둥근 사각 + 흰 L). Next가 자동 연결. 기본 `favicon.ico`는 삭제 |
+| `app/icon.svg` | 파비콘(파란 둥근 사각 + 흰 L). Next가 자동 연결. 기본 `favicon.ico`는 삭제 |
 | `app/opengraph-image.png` + `.alt.txt` | 링크 공유 이미지 1200×630. Next 파일 규칙으로 og:image·twitter:image 자동 출력. 소스는 `docs/og/og-source.html`(HTML/CSS)이며 Playwright 스크린샷으로 만든다 |
 | `app/page.tsx` | 헤더·10개 섹션·푸터. 예시 데이터(프로젝트·게시물·타임라인)와 목업 컴포넌트(`Post`, `Official`, `Shot`, `Timeline`)를 한 파일에 둔다 |
 | `app/page.module.css` | 섹션·목업 스타일 |

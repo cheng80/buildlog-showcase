@@ -1,8 +1,8 @@
 /* 토큰 정본: ../DESIGN.md */
 :root {
-  --primary: #5b3df5;
-  --primary-pressed: #4a2fd6;
-  --primary-soft: #efebff;
+  --primary: #1e4fd8;
+  --primary-pressed: #173fb0;
+  --primary-soft: #e7edfc;
   --ink: #111111;
   --body: #33332e;
   --mute: #62625b;
@@ -15,9 +15,16 @@
   --on-dark: #ffffff;
   --on-dark-mute: rgba(255, 255, 255, 0.72);
   --like: #ef4b5f;
-  --focus: #435ee5;
+  --focus: #1e4fd8;
+  --primary-mute: #3f5aa8;
+  --r-xs: 6px;
+  --r-sm: 12px;
   --r-md: 16px;
   --r-lg: 32px;
+  --shadow-mock:
+    14px 20px 28px -12px rgb(17 17 17 / 0.32),
+    6px 8px 12px -6px rgb(17 17 17 / 0.16),
+    1px 1px 2px rgb(17 17 17 / 0.1);
   --header-h: 64px;
 }
 
@@ -52,12 +59,20 @@ body {
 
 a {
   color: inherit;
+  transition:
+    color 150ms ease-out,
+    background-color 150ms ease-out;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--ink);
 }
 
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: var(--r-xs);
 }
 
 @media (max-width: 767px) {

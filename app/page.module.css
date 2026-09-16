@@ -3,8 +3,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
-  backdrop-filter: blur(8px);
+  background: var(--surface-soft);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -24,7 +23,7 @@
   align-items: center;
   gap: 10px;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   color: var(--ink);
   text-decoration: none;
 }
@@ -32,7 +31,7 @@
 .logoMark {
   width: 22px;
   height: 22px;
-  border-radius: 7px;
+  border-radius: var(--r-xs);
   background: var(--primary);
   flex: none;
   position: relative;
@@ -56,7 +55,7 @@
 .nav a {
   display: block;
   padding: 8px 12px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   color: var(--mute);
   font-weight: 600;
   text-decoration: none;
@@ -106,18 +105,18 @@
 
 .kicker {
   color: var(--primary);
-  font-weight: 800;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.875rem;
   margin-bottom: 10px;
 }
 
 .h1 {
   margin-top: 20px;
   color: var(--ink);
-  font-size: clamp(2.2rem, 1.2rem + 3.6vw, 4rem);
+  font-size: clamp(2.2rem, 1.2rem + 3.6vw, 3.25rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -125,14 +124,14 @@
   color: var(--ink);
   font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.5rem);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.35;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .h3 {
   color: var(--ink);
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.4;
 }
@@ -141,7 +140,7 @@
 .sectionLead {
   margin-top: 20px;
   max-width: 600px;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   color: var(--mute);
 }
 
@@ -155,7 +154,7 @@
   border-radius: 999px;
   background: var(--primary-soft);
   color: var(--primary);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
@@ -213,10 +212,17 @@
   white-space: nowrap;
 }
 
+/* 예시 안내 캡션. 목업 안 UI(칩·탭)와 헷갈리지 않도록 점선 테두리 알약 */
 .caption {
-  margin-top: 12px;
-  font-size: 0.85rem;
-  color: var(--mute);
+  display: block;
+  width: fit-content;
+  margin: 12px auto 0;
+  padding: 4px 14px;
+  border: 1px dashed var(--primary);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
   text-align: center;
 }
 
@@ -248,10 +254,20 @@
 .pairs em {
   font-style: normal;
   color: var(--mute);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 /* ---------- 목업 공통 ---------- */
+/* 앱 화면 목업 프레임은 누를 수 없는 '화면 캡처'다. 평평한 페이지 카드와 구분하려고 그림자로 띄운다. */
+.heroFeed,
+.heroProject,
+.composer,
+.composerFlow .post,
+.feed,
+.projectPage {
+  box-shadow: var(--shadow-mock);
+}
+
 .post {
   width: 100%;
   background: var(--canvas);
@@ -289,12 +305,12 @@
 .postName {
   font-weight: 700;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .postHandle {
   color: var(--mute);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 
 .postActions {
@@ -322,10 +338,10 @@
   gap: 6px;
   margin: 10px 14px 14px;
   padding: 8px 12px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: var(--surface-card);
   color: var(--body);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
@@ -346,15 +362,15 @@
   align-items: center;
   gap: 8px;
   color: var(--primary);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
 .officialTitle {
   margin-top: 10px;
   color: var(--ink);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 1.125rem;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -371,12 +387,12 @@
   overflow: hidden;
   display: grid;
   place-items: center;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .shotSmall {
   aspect-ratio: 4 / 3;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
 }
 
 /* 타이머 앱 */
@@ -491,11 +507,11 @@
   top: 10px;
   left: 10px;
   padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: var(--r-xs);
   background: rgb(0 0 0 / 0.45);
   color: #f4e9a8;
   font-family: ui-monospace, Menlo, monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -515,7 +531,6 @@
   bottom: 26%;
   width: 7%;
   background: linear-gradient(#b8f08f, #9be37a);
-  border-radius: 3px 3px 0 0;
 }
 
 .plant::before {
@@ -556,7 +571,7 @@
   gap: 8px;
   align-content: start;
   background: #fff;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   padding: 10px;
   font-style: normal;
 }
@@ -586,7 +601,7 @@
   border-radius: 999px;
   background: #eef2dc;
   color: #5d6b2a;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -599,7 +614,7 @@
 .row b {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--r-xs);
   flex: none;
 }
 
@@ -642,10 +657,10 @@
   right: 10px;
   bottom: 10px;
   padding: 2px 8px;
-  border-radius: 6px;
+  border-radius: var(--r-xs);
   background: rgb(0 0 0 / 0.65);
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -673,7 +688,7 @@
   background: var(--canvas);
   font-weight: 700;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .frameTab {
@@ -682,7 +697,7 @@
   border-radius: 999px;
   background: var(--surface-card);
   color: var(--mute);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 
 .chips {
@@ -699,7 +714,7 @@
   border-radius: 999px;
   background: var(--surface-card);
   color: var(--body);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
@@ -716,10 +731,10 @@
 .fakeButton {
   margin-left: auto;
   padding: 6px 16px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: var(--primary);
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
@@ -735,9 +750,9 @@
   grid-template-columns: 64px 1fr;
   gap: 12px;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   background: var(--surface-card);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .timeline li.current {
@@ -746,8 +761,13 @@
 
 .tlDate {
   color: var(--mute);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   padding-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.current .tlDate {
+  color: var(--primary-mute);
 }
 
 .tlText {
@@ -773,19 +793,19 @@
 
 .timelineCompact li {
   padding: 8px 10px;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .tlLabel {
   margin: 20px 0 8px;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--mute);
 }
 
 /* ---------- S-01 ---------- */
 .hero {
-  padding-top: 72px;
+  padding-top: 48px;
 }
 
 .heroText {
@@ -805,13 +825,12 @@
 }
 
 .heroVisual {
-  margin: 64px auto 0;
+  margin: 40px auto 0;
   display: grid;
   grid-template-columns: minmax(0, 400px) auto minmax(0, 440px);
   justify-content: center;
   align-items: start;
   gap: 8px;
-  filter: drop-shadow(0 24px 40px rgb(17 17 17 / 0.12));
 }
 
 .heroFeed,
@@ -832,7 +851,7 @@
 }
 
 .heroFeedBody .post {
-  border-radius: 12px;
+  border-radius: var(--r-sm);
 }
 
 .heroVisual .caption {
@@ -849,7 +868,7 @@
   padding: 0 12px;
   max-width: 140px;
   color: var(--primary);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-align: center;
   line-height: 1.4;
@@ -908,8 +927,8 @@
   display: block;
   margin-bottom: 4px;
   color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 800;
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 /* ---------- S-02 올리기 ---------- */
@@ -929,7 +948,7 @@
 }
 
 .composerHint {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--mute);
   font-weight: 600;
 }
@@ -938,7 +957,6 @@
   margin-top: 8px;
   min-height: 72px;
   color: var(--ink);
-  font-size: 1.05rem;
   line-height: 1.5;
 }
 
@@ -987,7 +1005,7 @@
 }
 
 .feed .caption {
-  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 /* ---------- S-04 프로젝트 ---------- */
@@ -1014,12 +1032,12 @@
 .projectHead .avatar {
   width: 56px;
   height: 56px;
-  border-radius: 16px;
+  border-radius: var(--r-md);
 }
 
 .projectName {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.375rem;
+  font-weight: 700;
   color: var(--ink);
 }
 
@@ -1029,7 +1047,7 @@
 
 .projectMeta {
   margin-top: 2px;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--mute);
 }
 
@@ -1045,72 +1063,68 @@
 }
 
 .projectPage .caption {
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 
-/* ---------- 기능 · 누구에게 ---------- */
-.featureGrid,
+/* ---------- 기능 · 누구에게 (카드 없이 텍스트 행) ---------- */
+.featureList,
 .whoGrid {
   list-style: none;
   margin-top: 48px;
   display: grid;
-  gap: 20px;
 }
 
-.featureGrid {
-  grid-template-columns: repeat(3, 1fr);
+.featureList {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 48px;
 }
 
-.featureGrid li,
-.whoGrid li {
-  padding: 28px;
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+.featureList li {
   display: grid;
-  gap: 10px;
+  grid-template-columns: 24px 1fr;
+  gap: 6px 14px;
   align-content: start;
 }
 
-.featureGrid p,
+.featureIcon {
+  grid-row: 1 / 3;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  color: var(--primary);
+}
+
+.featureList p,
 .whoGrid p {
   color: var(--mute);
 }
 
-.featureIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: var(--primary-soft);
-  color: var(--primary);
-}
-
 .whoGrid {
   grid-template-columns: repeat(3, 1fr);
+  gap: 24px 32px;
 }
 
 .whoGrid li {
-  border-top: 4px solid var(--primary);
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 8px;
+  align-content: start;
 }
 
-/* ---------- 시작하기 ---------- */
+/* ---------- 시작하기 (번호 + 텍스트) ---------- */
 .steps {
   list-style: none;
   margin-top: 48px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 32px;
 }
 
 .steps li {
-  padding: 28px;
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
   display: grid;
-  gap: 10px;
+  grid-template-columns: 40px 1fr;
+  gap: 6px 16px;
   align-content: start;
 }
 
@@ -1119,6 +1133,7 @@
 }
 
 .stepNo {
+  grid-row: 1 / 3;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -1126,7 +1141,7 @@
   place-items: center;
   background: var(--primary);
   color: #fff;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 /* ---------- FAQ ---------- */
@@ -1146,7 +1161,7 @@
   position: relative;
   color: var(--ink);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
 }
 
 .faq summary::-webkit-details-marker {
@@ -1160,7 +1175,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--primary);
-  font-size: 1.6rem;
+  font-size: 1.375rem;
   font-weight: 400;
 }
 
@@ -1190,7 +1205,7 @@
   margin: 12px auto 32px;
   max-width: 520px;
   color: var(--on-dark-mute);
-  font-size: 1.1rem;
+  font-size: 1.125rem;
 }
 
 .footer {
@@ -1199,7 +1214,7 @@
   padding: 48px 24px 32px;
   border-top: 1px solid var(--hairline);
   color: var(--mute);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .footerTop {
@@ -1238,7 +1253,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 
 /* ---------- 반응형 ---------- */
@@ -1267,7 +1282,7 @@
   }
 
   .whyGrid,
-  .featureGrid,
+  .featureList,
   .whoGrid,
   .steps {
     grid-template-columns: 1fr 1fr;
@@ -1292,7 +1307,7 @@
   }
 
   .hero {
-    padding-top: 40px;
+    padding-top: 32px;
   }
 
   .heroText {
@@ -1304,11 +1319,11 @@
   }
 
   .heroVisual {
-    margin-top: 40px;
+    margin-top: 32px;
   }
 
   .whyGrid,
-  .featureGrid,
+  .featureList,
   .whoGrid,
   .steps {
     grid-template-columns: 1fr;
