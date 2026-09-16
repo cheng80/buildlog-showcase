@@ -16,8 +16,10 @@ npm run lint       # eslint .
 npm run typecheck  # next typegen && tsc --noEmit
 npm run build      # 운영 빌드. 출력에서 `/` 가 ○(정적)인지 확인
 vercel             # Preview 배포 (팀 virtues1, 프로젝트 buildlog. .vercel/은 Git 제외)
-vercel --prod      # 운영 배포 → https://buildlog-opal.vercel.app (공개). 사용자가 요청할 때만
+vercel --prod      # 운영 수동 배포. 보통은 불필요: GitHub cheng80/buildlog가 연결되어 main push가 곧 운영 배포다
 ```
+
+공개 주소: https://buildlog-opal.vercel.app . `main`에 push하면 Vercel이 자동으로 운영 배포하므로 push 전에 `npm run build`가 통과하는지 확인한다.
 
 배포 URL 중 `buildlog-virtues1.vercel.app`과 배포별 URL은 Vercel 로그인(SSO)으로 보호되니 확인은 공개 도메인 또는 `vercel curl <url>`로 한다.
 

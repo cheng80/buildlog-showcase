@@ -40,7 +40,7 @@
 
 1. 사용자에게 localhost:3000 v2.2 화면 확인 받기.
 2. ~~커밋~~ 완료(2026-09-16, main). 원격 `origin`(GitHub cheng80/buildlog)에 push 완료.
-3. GitHub 저장소를 Vercel에 연결(push 시 자동 배포). `layout.tsx`에 `metadataBase`(https://buildlog-opal.vercel.app)와 공유 이미지(OG) 추가 후 `vercel --prod`.
+3. ~~GitHub↔Vercel 연결~~ 완료(main push → 운영 자동 배포 확인). `layout.tsx`에 `metadataBase`(https://buildlog-opal.vercel.app)와 공유 이미지(OG) 추가 후 push.
 
 ## 7. 인수인계
 
@@ -68,4 +68,5 @@
 | 첫 화면 테스트(`BR-007`) | INCOMPLETE | NONE | 2026-09-16 | v2.1 | CURRENT | 사용자 확인 대기. v1.x는 FAIL(사용자 판정) |
 | 실기기·스크린리더 | NOT_RUN | NONE | - | - | UNKNOWN | 미확인 |
 | 배포 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | `vercel deploy --yes --scope virtues1` 첫 배포 → 운영(Ready). 프로젝트 `buildlog`, 팀 `virtues1`, Next.js·Node 24.x. 별칭 https://buildlog-virtues1.vercel.app , https://buildlog-opal.vercel.app . `vercel curl`로 제목 '빌드로그 · 개발 과정을 공유하는 프로젝트 SNS' 확인 |
+| Git 자동 배포 | PASS | RECHECKED | 2026-09-16 | 9d54624 | CURRENT | GitHub cheng80/buildlog 연결됨. `main` push 후 source=git 운영 배포가 18초 만에 READY(commit 9d54624 확인) |
 | 공개 URL 접근 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | **공개 주소 https://buildlog-opal.vercel.app** 200. Playwright로 360·1440px 가로 넘침 없음, 앵커 9개, Tab 순서, FAQ 확인. Deployment Protection은 기본값(`all_except_custom_domains`) 그대로 — 운영 도메인(opal)은 공개, `buildlog-virtues1.vercel.app`과 배포별 URL은 302 → SSO(로그인 필요). 설정 변경 API 호출(`vercel api … PATCH`)은 400으로 실패했고 변경 불필요로 판단 |
