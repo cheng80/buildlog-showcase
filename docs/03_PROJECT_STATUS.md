@@ -39,7 +39,7 @@
 ## 6. 다음 작업
 
 1. 사용자에게 localhost:3000 v2.2 화면 확인 받기.
-2. ~~커밋~~ 완료(2026-09-16, main, 원격 없음).
+2. ~~커밋~~ 완료(2026-09-16, main). 원격 `origin`(GitHub cheng80/buildlog)에 push 완료.
 3. 공유 이미지 준비 후 Vercel Preview 배포, 공개 URL 재검증, 9절 갱신.
 
 ## 7. 인수인계

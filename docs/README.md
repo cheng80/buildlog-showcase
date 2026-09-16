@@ -9,7 +9,7 @@
 | [02_TECH_SPEC.md](02_TECH_SPEC.md) | Next.js·Vercel 구현 기준과 검증 |
 | [03_PROJECT_STATUS.md](03_PROJECT_STATUS.md) | 진행, 알려진 문제, 검증, 인수인계 |
 | [04_WORKFLOW.md](04_WORKFLOW.md) | 작업·변경 절차 |
-| [../AGENTS.md](../AGENTS.md) | AI 작업자의 진입점 |
+| [../CLAUDE.md](../CLAUDE.md) | AI 작업자의 진입점 (`AGENTS.md`는 여기로 안내하는 한 줄) |
 
 처음 읽는 사람은 기획서 → DESIGN.md → 기술 명세 순서로, 이어서 작업하는 사람은 현황 문서부터 읽습니다.
 

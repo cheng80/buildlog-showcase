@@ -8,7 +8,7 @@
 | 색·서체·간격·컴포넌트 | [DESIGN.md](../DESIGN.md) |
 | 구현 방식·제약·검증 명령 | [02_TECH_SPEC.md](02_TECH_SPEC.md) |
 | 진행·알려진 문제·검증·인수인계 | [03_PROJECT_STATUS.md](03_PROJECT_STATUS.md) |
-| AI 작업 시작 경로 | [AGENTS.md](../AGENTS.md) |
+| AI 작업 시작 경로 | [CLAUDE.md](../CLAUDE.md) |
 
 실제 서비스의 제품·기술 기획은 이 묶음에 쓰지 않는다.
 
