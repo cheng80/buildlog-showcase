@@ -42,7 +42,7 @@
 - **게시물 이미지:** `DESIGN.md` ‘게시물 이미지’ 표의 팔레트로 CSS 그라디언트·격자 표현. 1:1 `aspect-ratio`.
 - **FAQ(`FR-003`):** `details`/`summary`, 첫 항목 `open`.
 - **반응형(`FR-004`):** 기준 폭 1440 / 1024 / 768 / 390 / 360px. 1023px 이하 1열(텍스트 먼저), 767px 이하 헤더 2줄.
-- **메타데이터:** 제목 `${SERVICE} · ${TAGLINE}`, 설명은 S-01 설명, `metadataBase` = https://buildlog-opal.vercel.app, openGraph(type website, ko_KR, siteName), twitter card summary_large_image. 이미지는 파일 규칙(`opengraph-image.png`)이 처리.
+- **메타데이터:** 제목 `${SERVICE} · ${TAGLINE}`, 설명은 S-01 설명, `metadataBase` = https://buildlog-showcase.vercel.app, openGraph(type website, ko_KR, siteName), twitter card summary_large_image. 이미지는 파일 규칙(`opengraph-image.png`)이 처리.
 
 ## 4. 개인정보 / 데이터 / API
 

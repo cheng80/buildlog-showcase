@@ -1,16 +1,16 @@
 # 핸드오프 · 빌드로그 소개 사이트
 
-> 마지막 갱신: 2026-09-16 · 다음 세션에서 **"핸드오프 읽고 진행하자"**라고 하면 이 문서부터 읽고 바로 이어서 진행한다.
+> 마지막 갱신: 2026-09-17 · 다음 세션에서 **"핸드오프 읽고 진행하자"**라고 하면 이 문서부터 읽고 바로 이어서 진행한다.
 
 ## 1. 한눈에 보기
 
 | 항목 | 내용 |
 |---|---|
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
-| 작업 폴더 | 이 저장소 `buildlog/` (Next.js 프로젝트 + 기획 문서). 이 파일은 저장소 루트에 있다 |
+| 작업 폴더 | 이 저장소 `buildlog-showcase/` (Next.js 프로젝트 + 기획 문서). 2026-09-17에 `buildlog/`에서 이름을 바꿨다: `buildlog`는 앞으로 실제로 만들 서비스 프로젝트에 쓰고, 이 저장소는 그 서비스를 홍보하는 사이트다. 같은 날 GitHub 저장소(cheng80/buildlog-showcase)와 Vercel 프로젝트(buildlog-showcase)도 같은 이름으로 바꿨다. 이 파일은 저장소 루트에 있다 |
 | 현재 단계 | **v2.4(semantic-wrap 의미 단위 줄바꿈) 커밋·push 완료, 운영 자동 배포** |
 | 바로 할 일 | 운영 URL에서 v2.4 줄바꿈 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
-| 공개 URL | **https://buildlog-opal.vercel.app** (운영, 공개). `buildlog-virtues1.vercel.app`은 SSO 보호 |
+| 공개 URL | **https://buildlog-showcase.vercel.app** (운영, 공개). `buildlog-showcase-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
 
@@ -72,7 +72,7 @@
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
 | `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
 | `app/wrap.ts`(신규) `app/page.tsx` `app/page.module.css` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | v2.4 semantic-wrap. 커밋됨 |
-| Git | `origin` = https://github.com/cheng80/buildlog.git (push 완료). 마지막 커밋: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
+| Git | `origin` = https://github.com/cheng80/buildlog-showcase.git (push 완료). 마지막 커밋: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
 
 ## 7. 환경 메모
 
@@ -80,4 +80,4 @@
 - 검증 스크립트: 세션 scratchpad의 `check.mjs`(playwright-core, `channel: "chrome"`)로 360·390·768·1440px·앵커·Tab·FAQ 확인. 새 세션에서는 scratchpad에 `npm i playwright-core` 후 재작성 필요.
 - `next dev`가 `AGENTS.md` 끝에 안내 블록을 자동으로 붙임. 지우지 말고 함께 커밋.
 - 디자인 기반: awesome-design-md의 Pinterest DESIGN.md(MIT). Instagram 항목 없음. 강조색은 자체 코발트 파랑 `#1e4fd8`(보라 폐기, 2026-09-16).
-- Vercel: 팀 `virtues1`, 프로젝트 `buildlog`(첫 배포가 운영으로 들어감, 2026-09-16). 별칭 https://buildlog-virtues1.vercel.app . `.vercel/`은 Git 제외. CLI 전역 설치됨(`vercel` 59.x). Deployment Protection 기본값 유지: 운영 도메인 https://buildlog-opal.vercel.app 은 공개, 나머지 별칭·배포 URL은 302 → SSO(`vercel curl <url>`로 확인). GitHub 연동 완료: `main` push → 운영 자동 배포(별칭 buildlog-git-main-virtues1.vercel.app), 다른 브랜치 push → Preview. CLI 수동 배포(`vercel`, `vercel --prod`)도 가능.
+- Vercel: 팀 `virtues1`, 프로젝트 `buildlog-showcase`(2026-09-17 `buildlog`에서 이름 변경. 첫 배포는 2026-09-16, 운영으로 들어감). 운영 도메인 https://buildlog-showcase.vercel.app (공개). 별칭 https://buildlog-showcase-virtues1.vercel.app 와 배포별 URL은 302 → SSO(`vercel curl <url>`로 확인). `.vercel/`은 Git 제외, `projectName`은 buildlog-showcase. CLI 전역 설치됨(`vercel` 59.x). GitHub 연동: cheng80/buildlog-showcase, `main` push → 운영 자동 배포(별칭 buildlog-showcase-git-main-virtues1.vercel.app), 다른 브랜치 push → Preview. 옛 도메인 buildlog-opal.vercel.app 과 buildlog 이름의 별칭은 2026-09-17 제거.

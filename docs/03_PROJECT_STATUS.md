@@ -45,7 +45,7 @@
 
 ## 6. 다음 작업
 
-1. 운영 URL https://buildlog-opal.vercel.app 에서 v2.3 최종 확인(파랑 전환, 목업 그림자, 예시 캡션).
+1. 운영 URL https://buildlog-showcase.vercel.app 에서 v2.4 줄바꿈과 이름 전환(OG 이미지 URL 문구 포함) 최종 확인(파랑 전환, 목업 그림자, 예시 캡션).
 2. 판단 항목 4개 결정: 태그라인 칩 제거 여부, 섹션 위 라벨 제거 여부, 피드 목업을 구분선만으로 바꿀지, 타이머 민트색 교체 여부.
 3. ~~커밋·push~~ 완료(2026-09-16). `main` push가 곧 운영 배포.
 
@@ -88,3 +88,4 @@
 | OG·메타데이터 | PASS | RECHECKED | 2026-09-16 | v2.3 | CURRENT | 파랑으로 `docs/og/og-source.html` 수정 후 Playwright 1200×630 재렌더 → `app/opengraph-image.png` 교체. | `npm run build` 결과 `/opengraph-image.png` 정적 생성, `index.html`에 og:title·description·locale·image(1200×630)·type, twitter:card=summary_large_image·image 출력 확인. `metadataBase`=https://buildlog-opal.vercel.app |
 | Git 자동 배포 | PASS | RECHECKED | 2026-09-16 | 9d54624 | CURRENT | GitHub cheng80/buildlog 연결됨. `main` push 후 source=git 운영 배포가 18초 만에 READY(commit 9d54624 확인) |
 | 공개 URL 접근 | PASS | RECHECKED | 2026-09-16 | 2875f88 | CURRENT | **공개 주소 https://buildlog-opal.vercel.app** 200. Playwright로 360·1440px 가로 넘침 없음, 앵커 9개, Tab 순서, FAQ 확인. Deployment Protection은 기본값(`all_except_custom_domains`) 그대로 — 운영 도메인(opal)은 공개, `buildlog-virtues1.vercel.app`과 배포별 URL은 302 → SSO(로그인 필요). 설정 변경 API 호출(`vercel api … PATCH`)은 400으로 실패했고 변경 불필요로 판단 |
+| 이름 전환 buildlog → buildlog-showcase | PASS | RECHECKED | 2026-09-17 | 이름 전환 커밋 | CURRENT | 폴더·GitHub 저장소(`gh repo rename`, 옛 주소는 GitHub가 리다이렉트)·Vercel 프로젝트(`vercel project rename`)·package.json 이름을 모두 `buildlog-showcase`로 통일. `vercel git connect`로 Git 연동을 새 저장소 이름으로 다시 잡음(repoId 동일). 운영 도메인 buildlog-showcase.vercel.app 추가, metadataBase·OG 이미지(재렌더) 갱신. 옛 도메인 buildlog-opal.vercel.app 은 새 배포 확인 후 제거 |

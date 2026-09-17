@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 이 저장소는 무엇인가
 
-**빌드로그**(개발 과정을 공유하는 프로젝트 SNS)를 알리는 **홍보용 단일 랜딩 페이지**다. 서비스 자체(피드·게시·결제 등)는 여기서 만들지 않는다. 화면 속 피드·프로젝트 페이지는 전부 HTML/CSS로 그린 정적 목업이다. 문서 폴더(`docs/`)와 Next.js 프로젝트가 한 저장소에 있다. '프로젝트 쇼케이스'는 이 문서 묶음의 옛 이름일 뿐 서비스 이름이 아니며 화면에 쓰지 않는다.
+**빌드로그**(개발 과정을 공유하는 프로젝트 SNS)를 알리는 **홍보용 단일 랜딩 페이지**다. 서비스 자체(피드·게시·결제 등)는 여기서 만들지 않는다. 화면 속 피드·프로젝트 페이지는 전부 HTML/CSS로 그린 정적 목업이다. 문서 폴더(`docs/`)와 Next.js 프로젝트가 한 저장소에 있다. '프로젝트 쇼케이스'는 이 문서 묶음의 옛 이름일 뿐 서비스 이름이 아니며 화면에 쓰지 않는다. 로컬 폴더 이름은 `buildlog-showcase`다(2026-09-17 `buildlog`에서 변경). `buildlog`라는 이름은 앞으로 실제로 만들 서비스 프로젝트에 쓰기로 했으므로 이 홍보 사이트에 붙이지 않는다. GitHub 저장소(cheng80/buildlog-showcase)와 Vercel 프로젝트(buildlog-showcase)도 같은 이름이다.
 
 ## 명령
 
@@ -15,13 +15,13 @@ npm run dev        # http://localhost:3000 (Turbopack). AGENTS.md 끝에 Next �
 npm run lint       # eslint .
 npm run typecheck  # next typegen && tsc --noEmit
 npm run build      # 운영 빌드. 출력에서 `/` 가 ○(정적)인지 확인
-vercel             # Preview 배포 (팀 virtues1, 프로젝트 buildlog. .vercel/은 Git 제외)
-vercel --prod      # 운영 수동 배포. 보통은 불필요: GitHub cheng80/buildlog가 연결되어 main push가 곧 운영 배포다
+vercel             # Preview 배포 (팀 virtues1, 프로젝트 buildlog-showcase. .vercel/은 Git 제외)
+vercel --prod      # 운영 수동 배포. 보통은 불필요: GitHub cheng80/buildlog-showcase가 연결되어 main push가 곧 운영 배포다
 ```
 
-공개 주소: https://buildlog-opal.vercel.app . `main`에 push하면 Vercel이 자동으로 운영 배포하므로 push 전에 `npm run build`가 통과하는지 확인한다.
+공개 주소: https://buildlog-showcase.vercel.app . `main`에 push하면 Vercel이 자동으로 운영 배포하므로 push 전에 `npm run build`가 통과하는지 확인한다.
 
-배포 URL 중 `buildlog-virtues1.vercel.app`과 배포별 URL은 Vercel 로그인(SSO)으로 보호되니 확인은 공개 도메인 또는 `vercel curl <url>`로 한다.
+배포 URL 중 `buildlog-showcase-virtues1.vercel.app`과 배포별 URL은 Vercel 로그인(SSO)으로 보호되니 확인은 공개 도메인 또는 `vercel curl <url>`로 한다.
 
 브라우저 검증은 저장소에 스크립트가 없다. 세션 scratchpad에 `npm i playwright-core` 후 `chromium.launch({ channel: "chrome" })`으로 360·390·768·1440px 가로 넘침(`scrollWidth > clientWidth`), 모든 `a[href^="#"]` 대상 존재, 앵커 도착 시 제목이 고정 헤더 아래에 있는지, Tab 순서가 실제 링크와 FAQ만 거치는지, `details` Enter 동작을 확인한다. 결과는 `docs/03_PROJECT_STATUS.md` 9절에 `PASS / FAIL / INCOMPLETE / NOT_RUN`으로 기록하고, 실행하지 않은 검증을 통과로 쓰지 않는다.
 
@@ -56,5 +56,5 @@ Server Components만 쓴다. 클라이언트 JS·상태 관리·이미지 파일
 ## 작업 방식
 
 - 사용자에게 묻는 질문과 선택지는 한글로만 쓴다. 이 사용자는 긴 질문 도구보다 본문에 짧게 묻는 쪽에 답한다.
-- Git: `main` 브랜치, 원격 `origin` = https://github.com/cheng80/buildlog.git. 커밋과 push는 사용자가 요청할 때만 하며 메시지는 한국어로 쓴다.
+- Git: `main` 브랜치, 원격 `origin` = https://github.com/cheng80/buildlog-showcase.git. 커밋과 push는 사용자가 요청할 때만 하며 메시지는 한국어로 쓴다.
 - 작업을 멈출 때 `HANDOFF.md`와 `docs/03_PROJECT_STATUS.md`의 '다음 순서'를 갱신한다.

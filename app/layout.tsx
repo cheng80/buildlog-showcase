@@ -5,7 +5,7 @@ import { SERVICE, TAGLINE } from "./site";
 const DESCRIPTION = `${SERVICE}는 앱, 웹, 게임을 만드는 개발자의 SNS입니다. 스크린샷이나 유튜브 링크를 붙여 올리면 게시물이 피드에 뜨고, 같은 게시물이 프로젝트 페이지에 개발 기록으로 쌓입니다.`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buildlog-opal.vercel.app"),
+  metadataBase: new URL("https://buildlog-showcase.vercel.app"),
   title: `${SERVICE} · ${TAGLINE}`,
   description: DESCRIPTION,
   openGraph: {
