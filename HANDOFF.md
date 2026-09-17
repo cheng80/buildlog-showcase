@@ -9,10 +9,11 @@
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog-showcase/` (Next.js 프로젝트 + 기획 문서). 2026-09-17에 `buildlog/`에서 이름을 바꿨다: `buildlog`는 앞으로 실제로 만들 서비스 프로젝트에 쓰고, 이 저장소는 그 서비스를 홍보하는 사이트다. 같은 날 GitHub 저장소(cheng80/buildlog-showcase)와 Vercel 프로젝트(buildlog-showcase)도 같은 이름으로 바꿨다. 이 파일은 저장소 루트에 있다 |
 | 현재 단계 | **이름 전환(buildlog → buildlog-showcase) 커밋·push 완료, 운영 자동 배포. v2.4 줄바꿈 포함** |
-| 바로 할 일 | 운영 URL에서 v2.4 줄바꿈 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
+| 바로 할 일 | 운영 URL https://buildlog-showcase.vercel.app 에서 이름 전환(제목·OG 이미지 URL 문구)과 v2.4 줄바꿈을 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
 | 공개 URL | **https://buildlog-showcase.vercel.app** (운영, 공개). `buildlog-showcase-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
+| 실제 서비스 기획 핸드오프 | `HANDOFF_BUILDLOG.md` — 실제 빌드로그 서비스 기획을 Codex에 넘기기 위한 별도 문서(2026-09-17). 이 파일(소개 사이트 인수인계)과 별개 |
 
 ## 2. 서비스가 무엇인가 (3층)
 
@@ -37,12 +38,14 @@
 9. 사용자 "'화면 속 게시물은 예시입니다' 캡션이 눈에 안 띈다. 색이 다르거나 박스" → `.caption`을 primary 글자 + 점선 알약 박스로. `DESIGN.md` `example-caption`.
 10. 사용자 "보라색은 걷어 내자. 다른 색 추천" → 코발트 파랑 `#1e4fd8`(추천)·잉크 블랙·번트 오렌지 3안 제시, 파랑을 개발 서버에 미리보기 → "커밋/푸시"로 파랑 확정. 파비콘·OG 이미지 재렌더·문서 동기화 후 커밋·push(12701b7).
 11. 사용자 "semantic-wrap 설치 후 모든 화면 텍스트 검사", "필요시 폭도 조절" → `app/wrap.ts`(빌드 시 서버에서 모델 실행, NBSP 삽입, 클라이언트 JS 0) + `text-wrap: balance`. 외톨이 어절 45→0. 폭은 시뮬레이션상 이득이 없어 그대로. 피드 제목은 사용자 지적으로 손 지정. 커밋·push.
+12. (2026-09-17) 사용자가 폴더를 `buildlog` → `buildlog_showcase`로 바꿈: "`buildlog`는 앞으로 실제로 만들 프로젝트, 쇼케이스는 홍보 사이트". 이어서 "GitHub·Vercel도 바꿔야 한다", "`buildlog-showcase`로 일괄 통일이 낫지 않나?" → 하이픈으로 통일(Vercel 프로젝트 이름이 곧 호스트명이라 밑줄 불가). 폴더·GitHub(`gh repo rename`)·Vercel(`vercel project rename` + `vercel git connect`)·package.json·metadataBase·OG 이미지·문서 전부 갱신, 옛 도메인 `buildlog-opal.vercel.app` 제거. 커밋 fbbc439·d6ec872, push·자동 배포 확인.
 
 ## 4. 다음 순서
 
-1. ~~사용자가 v2.3을 보고 판정~~ → 그림자·캡션·색 피드백 반영 후 커밋·push 완료. 운영 URL에서 최종 확인.
+1. ~~사용자가 v2.3을 보고 판정~~ → 그림자·캡션·색 피드백 반영 후 커밋·push 완료. 새 운영 URL https://buildlog-showcase.vercel.app 에서 이름 전환과 v2.4를 최종 확인(자동 확인은 끝남: 200, 제목, og:image. 사용자 눈 확인은 아직).
 2. 판단 항목 결정: 히어로 태그라인 칩 제거? 섹션 위 라벨(올리기/피드/프로젝트 페이지) 제거? 피드 목업을 카드 대신 구분선으로? 타이머 민트 `#2dd4bf` 교체?
-3. ~~커밋·push~~ 완료(2026-09-16).
+3. ~~커밋·push~~ 완료(2026-09-16). ~~이름 전환 buildlog → buildlog-showcase~~ 완료(2026-09-17).
+4. 실제 서비스 `buildlog`는 이 저장소가 아니라 새 저장소에서 시작한다. 이 저장소는 홍보 사이트만 다룬다.
 
 이전:
 1. ~~사용자가 localhost:3000 v2.2를 보고 판정.~~
@@ -58,6 +61,7 @@
 - 추상어(기록·이야기·발견)보다 구체어(게시물·스크린샷·피드·프로젝트 페이지·유튜브 링크).
 - 카피를 바꾸면 "첫 화면만 보고 무슨 서비스인지 한 문장으로 말할 수 있나" 재확인.
 - 사용자에게 묻는 질문은 한글로만. `AskUserQuestion`은 세 번 거부됐으니 본문에 짧게 묻는 편이 낫다.
+- 이름: 홍보 사이트는 폴더·GitHub·Vercel·package 모두 `buildlog-showcase`(하이픈). `buildlog`라는 이름은 앞으로 만들 실제 서비스 프로젝트 몫이라 이 사이트에 붙이지 않는다. 문서에 `buildlog/`·`buildlog_showcase/`가 남아 있으면 오래된 것이니 고친다.
 - `DESIGN.md` 1.1 규칙: 아이콘·제목·본문 카드 3열을 섹션마다 반복하지 않는다, 페이지 카드는 평평하고 앱 화면 목업 프레임만 그림자로 띄운다, 색 배경 위 회색 글자 금지, 글자 크기는 램프(12/14/16/18/22/40/52px)만, 모서리는 토큰(6/12/16/32/full)만, 800 굵기는 로고·h1·h2만.
 
 ## 6. 파일 상태
@@ -72,12 +76,13 @@
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
 | `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
 | `app/wrap.ts`(신규) `app/page.tsx` `app/page.module.css` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | v2.4 semantic-wrap. 커밋됨 |
-| Git | `origin` = https://github.com/cheng80/buildlog-showcase.git (push 완료). 마지막 커밋: 이름 전환 buildlog → buildlog-showcase fbbc439 (2026-09-17). 그 전: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
+| `app/layout.tsx` `app/opengraph-image.png` `docs/og/og-source.html` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | 이름 전환(buildlog → buildlog-showcase). 커밋됨(fbbc439, d6ec872) |
+| Git | `origin` = https://github.com/cheng80/buildlog-showcase.git (push 완료. 옛 주소 cheng80/buildlog, cheng80/buildlog_showcase 는 GitHub가 리다이렉트). 마지막 커밋: d6ec872 이름 전환 검증 기록, fbbc439 이름 전환 (2026-09-17). 그 전: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
 
 ## 7. 환경 메모
 
 - 개발 서버 `npm run dev` → http://localhost:3000 (세션마다 다시 실행. v2.3 검증은 `npx next start -p 3011`로 빌드 결과를 띄워서 했다).
-- 검증 스크립트: 세션 scratchpad의 `check.mjs`(playwright-core, `channel: "chrome"`)로 360·390·768·1440px·앵커·Tab·FAQ 확인. 새 세션에서는 scratchpad에 `npm i playwright-core` 후 재작성 필요.
+- 검증 스크립트: 세션 scratchpad의 `check.mjs`(playwright-core, `channel: "chrome"`)로 360·390·768·1440px·앵커·Tab·FAQ 확인. 새 세션에서는 scratchpad에 `npm i playwright-core` 후 재작성 필요. OG PNG 재렌더도 같은 방식: scratchpad에서 playwright-core(`channel: "chrome"`)로 `docs/og/og-source.html`을 1200×630 뷰포트로 열어 `document.fonts.ready` 뒤 스크린샷 → `app/opengraph-image.png` 덮어쓰기(2026-09-17 그렇게 했다).
 - `next dev`가 `AGENTS.md` 끝에 안내 블록을 자동으로 붙임. 지우지 말고 함께 커밋.
 - 디자인 기반: awesome-design-md의 Pinterest DESIGN.md(MIT). Instagram 항목 없음. 강조색은 자체 코발트 파랑 `#1e4fd8`(보라 폐기, 2026-09-16).
 - Vercel: 팀 `virtues1`, 프로젝트 `buildlog-showcase`(2026-09-17 `buildlog`에서 이름 변경. 첫 배포는 2026-09-16, 운영으로 들어감). 운영 도메인 https://buildlog-showcase.vercel.app (공개). 별칭 https://buildlog-showcase-virtues1.vercel.app 와 배포별 URL은 302 → SSO(`vercel curl <url>`로 확인). `.vercel/`은 Git 제외, `projectName`은 buildlog-showcase. CLI 전역 설치됨(`vercel` 59.x). GitHub 연동: cheng80/buildlog-showcase, `main` push → 운영 자동 배포(별칭 buildlog-showcase-git-main-virtues1.vercel.app), 다른 브랜치 push → Preview. 옛 도메인 buildlog-opal.vercel.app 과 buildlog 이름의 별칭은 2026-09-17 제거.
