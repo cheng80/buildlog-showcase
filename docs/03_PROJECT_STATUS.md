@@ -1,6 +1,6 @@
 # 빌드로그 소개 사이트 프로젝트 현황
 
-> 갱신일: 2026-09-16 · 문서 리비전: 2.3
+> 갱신일: 2026-09-18 · 문서 리비전: 2.5
 
 ## 1. 로드맵
 
@@ -14,6 +14,8 @@
 별도 `PLAN` 없음.
 
 ## 3. 현재 작업
+
+**v2.5: 섹션 디자인을 시안 C(코발트 블록)로 바꾸고 커밋·push.** 사용자가 "소개형 마이크로 사이트에 어울리는 디자인 피처·컴포넌트를 awesome-design-md에서 조사해 현재 톤앤매너로 시안 3개"를 요청했다. 저장소 69개 브랜드 중 25개 DESIGN.md(cursor·linear·stripe·supabase·vercel·notion·mintlify·figma·clay·cal 등)를 읽고, 세 시안을 세션 scratchpad에 정적 HTML로 만들어 Orca 브라우저 탭에 띄웠다: A 개발 로그(세로 레일·changelog 행·선 구분), B 목업 무대(겹친 창 + 같은 게시물 연결선, 반전 띠, 벤토), C 코발트 블록(색 블록 섹션, 전후 비교, 코발트 마무리). 사용자는 "마지막 커밋에 1차완료 태그를 단 후 C안만 적용해 main에 커밋/푸시"를 지시했다. 태그 `1차완료`는 v2.4 마지막 커밋(915f0c7)에 달았다. 적용 내용: 모든 섹션을 32px 블록(흰/`primary-soft` 번갈아)으로 나눔, 히어로는 5:7 두 칸에 프로젝트 창 위로 게시물이 겹쳐 블록 아래로 넘침, 왜 섹션은 "지금은 / 빌드로그에서는" 두 칸 비교(위 행은 흩어진 조각 / 정리된 타임라인 장식), 키커는 파란 알약, 기능은 구분선 3×2, 누구에게는 파란 블록 안 22px 줄, 시작하기는 번호 타일, FAQ는 상자형 + chevron, 마무리는 `primary` 채움 블록 + 흰 버튼, 프로젝트 창에 장식 탭(개발 기록·스크린샷·소개). 시안에서 바꾼 점: 누구에게 제목을 32px·800에서 램프 22px·700으로(DESIGN.md 타이포 규칙), 프로젝트 창에 스크린샷 3장 유지(기획서), 히어로 화살표 라벨 "같은 게시물이 프로젝트 페이지에도" 삭제, 올리기 제목은 외톨이 어절이 생겨 h1처럼 손 지정, 767px 이하 히어로는 게시물을 먼저 쌓아 첫 화면에 보이게. 카피 문장은 그대로이고 새 화면 문구(두 칸 머리·조각 그림·탭)는 기획서 4절에 추가했다. `DESIGN.md` 1.2, 기획서 2.3.
 
 **v2.4: semantic-wrap으로 화면의 모든 텍스트 줄바꿈 검사·적용, 커밋·push.** 사용자 지시 "https://semantic-wrap.woohyunpark.xyz/ko 설치 후 모든 화면상의 텍스트를 검사 후", "필요시 폭도 조절". 라이브러리의 React 통합은 브라우저에서 측정해 `<br>`을 넣는 방식이라 클라이언트 JS 없음 원칙과 맞지 않아, core+ko 모델을 빌드 시 서버에서만 돌리는 `app/wrap.ts`를 만들었다. 모델이 구 안쪽으로 본 공백(penalty 1)을 NBSP로 바꾸고, 문장 끝 뒤는 항상 나뉘게 두며, 구가 예산을 넘으면 머리말(오른쪽)부터 묶는다. 짝으로 리드·본문·FAQ·h3에 `text-wrap: balance`. 검사 방법: Playwright로 4개 뷰포트의 텍스트 87개(348건)의 실제 줄바꿈·서체·글자 폭을 수집해 모델의 선택과 비교하고, 예산 조합은 greedy+balance 시뮬레이션으로 골랐다. 결과: 마지막 줄이 어절 하나인 외톨이 45건 → 0건(올리기 입력창의 URL 줄 4건은 의도된 줄바꿈), 모델과 같은 줄바꿈 261 → 310건, 총 줄 수 502 → 505(360px의 FAQ 답 2개·마무리 문단이 한 줄씩 늘었고 구 단위로 고르게 나뉨). 폭 조절은 시뮬레이션상 이득이 없어 하지 않았다. 알려진 한계: 예산을 넘는 구를 자를 때 언어 정보가 없어 어색한 자리가 남을 수 있다. 사용자 지적으로 피드 제목은 "만들어지는 중인 | 프로젝트를 봅니다"가 되도록 h1처럼 손 지정(앞 구 `sw()` + 뒤 구 `.nowrap`).
 
@@ -45,6 +47,11 @@
 
 ## 6. 다음 작업
 
+1. 운영 URL https://buildlog-showcase.vercel.app 에서 v2.5(시안 C) 화면을 사용자가 확인. 되돌리려면 태그 `1차완료`.
+2. 시안 A·B의 정적 HTML은 세션 scratchpad에만 있었고 저장소에 넣지 않았다. 다시 필요하면 이 절의 설명으로 재작성한다.
+
+이전 목록(v2.4):
+
 1. 운영 URL https://buildlog-showcase.vercel.app 에서 v2.4 줄바꿈과 이름 전환(OG 이미지 URL 문구 포함) 최종 확인(파랑 전환, 목업 그림자, 예시 캡션).
 2. 판단 항목 4개 결정: 태그라인 칩 제거 여부, 섹션 위 라벨 제거 여부, 피드 목업을 구분선만으로 바꿀지, 타이머 민트색 교체 여부.
 3. ~~커밋·push~~ 완료(2026-09-16). `main` push가 곧 운영 배포.
@@ -66,6 +73,7 @@
 
 ## 8. 변경된 계약
 
+- v2.5: 태그 `1차완료` = v2.4. `page.module.css`에서 `.section` `.band` `.narrow` `.center` `.eyebrow` `.whyGrid` `.whoGrid` `.composerFlow` `.heroFeed` `.heroFeedBody` 삭제, `.main` `.block` `.white` `.soft` `.heroText` `.heroPost` `.why` `.ba` `.baHead` `.baRow` `.ans` `.ansTag` `.scatter` `.tidy` `.mock` `.segTabs` `.whoList` `.faqBlock` 추가. `.kicker`는 알약, `.pairs`는 2열 타일(아이콘 없음), `.closing`은 primary 블록, 헤더·푸터 폭 1248px. 아이콘 `scatter` `calendar` `noise` 삭제, `chevron` 추가. 섹션 ID·링크·카피 문장 동일. `DESIGN.md` 1.2(`section-block` `why-compare` 추가, `why-card` 삭제, feature-row 3열, step 타일, faq-row 상자, closing-strip primary).
 - v2.3: 브랜드색 보라 `#5b3df5` → 코발트 파랑 `#1e4fd8`(`primary-pressed` `#173fb0`, `primary-soft` `#e7edfc`, `focus` = primary). `globals.css` 토큰 추가 `--primary-mute`(`#3f5aa8`) `--r-xs` `--r-sm` `--shadow-mock`(목업 프레임 전용 그림자). `.caption`은 점선 알약. CSS 클래스 `featureGrid` → `featureList`, `featureIcon`은 타일이 아닌 24px 아이콘. 기능·누구에게·시작하기 카드 없음. 히어로 그림자 없음, 헤더 blur 없음. `DESIGN.md` 1.1(원칙 5개, 타이포 규칙 절 추가). 카피·섹션 ID·링크는 v2.2와 동일.
 - v2.2: 섹션 ID `#hero #why #post #feed #project #features #who #start #faq #closing`. 푸터 링크 7개. `app/icon.svg` 추가, `app/favicon.ico` 삭제.
 - v2.1: 섹션 ID `#hero #post #feed #project #start #faq #closing`. 헤더 링크 '올리기 / 피드 / 프로젝트 / 시작하기'. FAQ 4개. 예시 프로젝트 3개. 서비스명 상수 `app/site.ts`. 서비스명 빌드로그.
@@ -75,6 +83,9 @@
 
 | 항목 | 결과 | 근거 | 날짜 | 리비전 | 유효성 | 출처 / 공백 |
 |---|---|---|---|---|---|---|
+| v2.5 정적 분석·타입·빌드 | PASS | RECHECKED | 2026-09-18 | v2.5 | CURRENT | `npm run lint`, `npm run typecheck`, `npm run build`(`/` ○ 정적) 통과 |
+| v2.5 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-18 | v2.5 | CURRENT | `next start` 빌드 결과를 Playwright(Chrome) 360·390·768·1440px: 가로 넘침 0, `#` 앵커 대상 모두 존재, 앵커 도착 시 제목이 헤더 아래, Tab이 링크·FAQ summary만 거침, 둘째 FAQ Enter로 열림. 1440·390 전체 스크린샷 육안 확인(히어로 캡션 겹침·올리기 제목 외톨이 어절·모바일 히어로 순서를 고친 뒤 재검사) |
+| v2.5 운영 배포 확인 | NOT_RUN | NONE | 2026-09-18 | v2.5 | UNKNOWN | push 뒤 자동 배포 결과는 이 표를 쓸 때 아직 확인 전 |
 | 정적 분석·타입 | PASS | RECHECKED | 2026-09-16 | v2.3+그림자 | CURRENT | `npm run lint`, `npm run typecheck` 통과. 그림자 추가 뒤 lint 재실행 |
 | 운영 빌드 | PASS | RECHECKED | 2026-09-16 | v2.3+그림자 | CURRENT | `npm run build`, `/` 정적(○). 그림자 추가 뒤 재실행 |
 | 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-16 | v2.3 | CURRENT | Playwright(Chrome, `next start` 빌드 결과) 360·390·768·1440px 가로 넘침 없음, `#` 앵커 16개 대상 모두 존재·`#`만 있는 링크 0, 9개 섹션 도착 시 제목 top ≥ 헤더 bottom, Tab 20회가 링크 16개·FAQ summary 4개만 거침, 첫 FAQ 기본 펼침·둘째 Enter로 열림. 스크린샷 육안 확인 |

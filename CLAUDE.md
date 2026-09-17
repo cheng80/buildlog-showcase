@@ -33,13 +33,13 @@ vercel --prod      # 운영 수동 배포. 보통은 불필요: GitHub cheng80/b
 
 Server Components만 쓴다. 클라이언트 JS·상태 관리·이미지 파일이 없다. FAQ는 `details`/`summary`.
 
-- `app/wrap.ts` — 의미 단위 줄바꿈 `sw(text, maxChars)`. semantic-wrap(`@semantic-wrap/core`·`@semantic-wrap/ko`, ESM, Node 22+) 한국어 제목 모델을 빌드 시 서버에서만 돌려, 모델이 구 안쪽으로 본 공백을 NBSP로 바꾼다. 제목·리드·본문·FAQ·공식 카드 문구가 `page.tsx`에서 이 함수를 거치며, 짝이 되는 CSS는 `page.module.css`의 `text-wrap: balance` 묶음 규칙이다. 예산 상수(H1·H2·H3·LEAD·BODY)는 실제 글자 폭으로 시뮬레이션해 고른 값이니 바꾸려면 다시 재본다. 카피 표와 대조할 때 NBSP는 공백으로 본다. 모델이 어색하게 자르는 제목(현재 h1·피드 제목)은 앞 구만 `sw()`에 넣고 뒤 구를 `.nowrap` span으로 손 지정한다.
+- `app/wrap.ts` — 의미 단위 줄바꿈 `sw(text, maxChars)`. semantic-wrap(`@semantic-wrap/core`·`@semantic-wrap/ko`, ESM, Node 22+) 한국어 제목 모델을 빌드 시 서버에서만 돌려, 모델이 구 안쪽으로 본 공백을 NBSP로 바꾼다. 제목·리드·본문·FAQ·공식 카드 문구가 `page.tsx`에서 이 함수를 거치며, 짝이 되는 CSS는 `page.module.css`의 `text-wrap: balance` 묶음 규칙이다. 예산 상수(H1·H2·H3·LEAD·BODY)는 실제 글자 폭으로 시뮬레이션해 고른 값이니 바꾸려면 다시 재본다. 카피 표와 대조할 때 NBSP는 공백으로 본다. 모델이 어색하게 자르는 제목(현재 h1·올리기 제목·피드 제목)은 앞 구만 `sw()`에 넣고 뒤 구를 `.nowrap` span으로 손 지정한다.
 
 - `app/site.ts` — `SERVICE`("빌드로그")와 `TAGLINE`. 서비스 이름은 여기서만 바꾼다. 바꾸면 `page.tsx`·`layout.tsx`의 조사(는/은)를 확인한다.
 - `app/layout.tsx` — `lang="ko"`, Pretendard(jsDelivr CDN `<link>`), 메타데이터가 `site.ts`를 사용.
 - `app/globals.css` — `DESIGN.md` 토큰을 CSS 변수로 옮긴 것. 색·간격·모서리를 바꾸려면 `DESIGN.md`를 먼저 고친다. `--header-h`가 `scroll-padding-top`으로 앵커 도착 위치를 보정한다(767px 이하 92px).
-- `app/page.tsx` — 페이지 전체가 한 파일. 위에서 아래로: 예시 데이터 상수(프로젝트 3개·타임라인·카피 배열) → `Icon`(인라인 SVG 경로 사전) → `Shot`(프로젝트 `Kind`별로 CSS만으로 그린 앱 화면: timer/garden/recipe) → 목업 조각 `Avatar`·`Post`·`Official`·`Timeline`·`FrameBar` → `Home`(헤더, 섹션 10개, 푸터). 섹션 ID는 `hero why post feed project features who start faq closing`이며 헤더·히어로·마무리·푸터 링크가 이 ID를 가리킨다.
-- `app/page.module.css` — 섹션 순서대로 주석 구분. 목업 클래스(`.post`, `.shot*`, `.frameBar`, `.timeline`)는 여러 섹션이 공유하므로 한 곳을 고치면 히어로·올리기·피드·프로젝트 섹션이 함께 바뀐다.
+- `app/page.tsx` — 페이지 전체가 한 파일. 위에서 아래로: 예시 데이터 상수(프로젝트 3개·타임라인·카피 배열) → `Icon`(인라인 SVG 경로 사전) → `Shot`(프로젝트 `Kind`별로 CSS만으로 그린 앱 화면: timer/garden/recipe) → 목업 조각 `Avatar`·`Post`·`Official`·`Timeline`·`FrameBar`·`ProjectHead` → `Home`(헤더, 섹션 10개, 푸터). 섹션 ID는 `hero why post feed project features who start faq closing`이며 헤더·히어로·마무리·푸터 링크가 이 ID를 가리킨다.
+- `app/page.module.css` — 섹션 순서대로 주석 구분. 레이아웃은 1.2(2026-09-18, 시안 C)부터 섹션마다 `.block` + `.white`/`.soft` 색 블록이고 `.main`이 폭 1248px(여백 포함)을 잡는다. 목업 클래스(`.post`, `.shot*`, `.frameBar`, `.timeline`)는 여러 섹션이 공유하므로 한 곳을 고치면 히어로·올리기·피드·프로젝트 섹션이 함께 바뀐다.
 - `app/icon.svg` — 파비콘. `app/opengraph-image.png`(+`.alt.txt`) — 링크 공유 이미지. 둘 다 Next 파일 규칙으로 자동 연결. OG 소스는 `docs/og/og-source.html`이며 히어로 문구를 바꾸면 그 파일도 고치고 Playwright(1200×630)로 다시 스크린샷해 PNG를 교체한다.
 
 ## 이 저장소만의 규칙 (기획서 7절 BR-001~008)

@@ -8,7 +8,7 @@
 }
 
 .headerInner {
-  max-width: 1200px;
+  max-width: 1248px;
   min-height: var(--header-h);
   margin: 0 auto;
   padding: 0 24px;
@@ -66,30 +66,48 @@
   background: var(--surface-card);
 }
 
-/* ---------- 공통 ---------- */
-.section {
-  max-width: 1200px;
+/* ---------- 공통: 색 블록 ---------- */
+/* 섹션마다 32px 모서리 블록(흰 바탕 또는 primary-soft). 블록은 평평하고 목업 프레임만 그림자로 뜬다 */
+.main {
+  max-width: 1248px;
   margin: 0 auto;
-  padding: 96px 24px;
+  padding: 0 24px;
 }
 
-.band {
-  background: var(--surface-card);
+.block {
+  margin-top: 24px;
+  padding: 72px 64px;
+  border-radius: var(--r-lg);
 }
 
-.narrow {
-  max-width: 800px;
+.soft {
+  background: var(--primary-soft);
 }
 
-.center {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
+.white {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
 }
 
-.center .sectionLead {
-  margin-left: auto;
-  margin-right: auto;
+/* primary-soft 위 보조 글자는 회색 mute 대신 primary-mute */
+.soft .lead,
+.soft .sectionLead {
+  color: var(--primary-mute);
+}
+
+.kicker {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.soft .kicker {
+  background: var(--canvas);
 }
 
 .split {
@@ -101,13 +119,6 @@
 
 .reverse > :first-child {
   order: 2;
-}
-
-.kicker {
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 0.875rem;
-  margin-bottom: 10px;
 }
 
 .h1 {
@@ -137,12 +148,15 @@
   text-wrap: balance;
 }
 
+
 /* app/wrap.ts의 의미 단위 묶음(NBSP)과 짝. semantic-wrap의 balance 전략처럼 허용된 경계 안에서 줄 길이를 고르게 */
 .lead,
 .sectionLead,
-.whyGrid p,
+.baRow p,
+.ans,
+.pairs span,
 .featureList p,
-.whoGrid p,
+.whoList span,
 .steps p,
 .faq summary,
 .faq p,
@@ -162,16 +176,6 @@
 
 .nowrap {
   white-space: nowrap;
-}
-
-.eyebrow {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: var(--primary-soft);
-  color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 700;
 }
 
 .actions {
@@ -242,48 +246,8 @@
   text-align: center;
 }
 
-.pairs {
-  list-style: none;
-  margin-top: 28px;
-  display: grid;
-  gap: 10px;
-  max-width: 520px;
-}
-
-.pairs li {
-  display: grid;
-  grid-template-columns: 22px 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--canvas);
-  color: var(--primary);
-}
-
-.pairs span {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.pairs em {
-  font-style: normal;
-  color: var(--mute);
-  font-size: 0.875rem;
-}
 
 /* ---------- 목업 공통 ---------- */
-/* 앱 화면 목업 프레임은 누를 수 없는 '화면 캡처'다. 평평한 페이지 카드와 구분하려고 그림자로 띄운다. */
-.heroFeed,
-.heroProject,
-.composer,
-.composerFlow .post,
-.feed,
-.projectPage {
-  box-shadow: var(--shadow-mock);
-}
-
 .post {
   width: 100%;
   background: var(--canvas);
@@ -819,142 +783,8 @@
   color: var(--mute);
 }
 
-/* ---------- S-01 ---------- */
-.hero {
-  padding-top: 48px;
-}
-
-.heroText {
-  max-width: 820px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.heroText .lead {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 640px;
-}
-
-.heroText .actions {
-  justify-content: center;
-}
-
-.heroVisual {
-  margin: 40px auto 0;
-  display: grid;
-  grid-template-columns: minmax(0, 400px) auto minmax(0, 440px);
-  justify-content: center;
-  align-items: start;
-  gap: 8px;
-}
-
-.heroFeed,
-.heroProject {
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-
-.heroProject {
-  border-color: var(--primary);
-}
-
-.heroFeedBody {
-  padding: 12px;
-  background: var(--surface-card);
-}
-
-.heroFeedBody .post {
-  border-radius: var(--r-sm);
-}
-
-.heroVisual .caption {
-  grid-column: 1 / -1;
-}
-
-.flowArrow {
-  align-self: center;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 0 12px;
-  max-width: 140px;
-  color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.4;
-}
-
-.arrowIcon {
-  transform: rotate(-90deg);
-  width: 28px;
-  height: 28px;
-}
-
-.flowArrowDown {
-  flex-direction: row;
-  padding: 12px 0;
-  max-width: none;
-}
-
-/* ---------- 왜 ---------- */
-.whyGrid {
-  list-style: none;
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.whyGrid li {
-  padding: 28px;
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  display: grid;
-  gap: 12px;
-  align-content: start;
-}
-
-.whyIcon {
-  width: 28px;
-  height: 28px;
-  color: var(--mute);
-}
-
-.problem {
-  color: var(--mute);
-}
-
-.answer {
-  margin-top: 4px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--hairline);
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.answerTag {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
 
 /* ---------- S-02 올리기 ---------- */
-.composerFlow {
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
 
 .composer {
   background: var(--canvas);
@@ -992,48 +822,7 @@
   border-top: 1px solid var(--hairline-soft);
 }
 
-/* ---------- S-03 피드 ---------- */
-.feed {
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
-  background: var(--surface-card);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-
-.band .feed {
-  background: var(--canvas);
-}
-
-.band .feed .feedList {
-  background: var(--surface-soft);
-}
-
-.feedList {
-  display: grid;
-  gap: 12px;
-  padding: 12px;
-  max-height: 760px;
-  overflow: hidden;
-  mask-image: linear-gradient(#000 85%, transparent);
-}
-
-.feed .caption {
-  margin-bottom: 12px;
-}
-
 /* ---------- S-04 프로젝트 ---------- */
-.projectPage {
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  background: var(--canvas);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
 
 .projectBody {
   padding: 20px;
@@ -1067,9 +856,6 @@
   color: var(--mute);
 }
 
-.projectPage .chips {
-  margin-top: 14px;
-}
 
 .shots {
   margin-top: 16px;
@@ -1078,154 +864,505 @@
   gap: 8px;
 }
 
-.projectPage .caption {
-  margin-bottom: 16px;
+.flowArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 0;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
-/* ---------- 기능 · 누구에게 (카드 없이 텍스트 행) ---------- */
-.featureList,
-.whoGrid {
-  list-style: none;
-  margin-top: 48px;
+/* ---------- 히어로: 파란 블록 안 문장, 목업은 블록 아래로 넘친다 ---------- */
+.hero {
   display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 40px;
+  padding-bottom: 0;
 }
 
-.featureList {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px 48px;
+.heroText {
+  padding-bottom: 72px;
 }
 
-.featureList li {
+.heroText .h1 {
+  margin-top: 0;
+}
+
+.heroVisual {
+  position: relative;
+  align-self: end;
+  height: 500px;
+  margin-bottom: -120px;
+}
+
+.heroProject {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 420px;
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.heroProject .projectBody {
+  padding: 16px;
+}
+
+.heroPost {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  width: 330px;
+  z-index: 1;
+}
+
+.heroVisual .caption {
+  position: absolute;
+  top: calc(100% + 56px);
+  left: 0;
+  right: 0;
+}
+
+/* ---------- 왜: 지금은 / 빌드로그에서는 두 칸. 행을 맞추려고 한 그리드에 좌우 칸을 번갈아 둔다 ---------- */
+.why {
+  margin-top: 240px;
+}
+
+.ba {
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 6px 14px;
-  align-content: start;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--r-lg);
+  overflow: hidden;
 }
 
-.featureIcon {
-  grid-row: 1 / 3;
-  width: 24px;
-  height: 24px;
-  margin-top: 2px;
+.ba > * {
+  padding: 20px 40px;
+}
+
+.ba > :nth-child(odd) {
+  background: var(--surface-card);
+}
+
+.ba > :nth-child(even) {
+  background: var(--primary-soft);
+}
+
+.ba > :nth-last-child(-n + 2) {
+  padding-bottom: 40px;
+}
+
+.baHead {
+  padding-top: 36px !important;
+  color: var(--mute);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.baHead + .baHead {
   color: var(--primary);
 }
 
-.featureList p,
-.whoGrid p {
+.baRow {
+  border-top: 1px solid var(--hairline);
+}
+
+.baRow p {
+  margin-top: 4px;
   color: var(--mute);
 }
 
-.whoGrid {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px 32px;
+.ans {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid #c9d6f7;
+  color: var(--ink);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
-.whoGrid li {
-  padding-top: 20px;
-  border-top: 1px solid var(--hairline);
-  display: grid;
+/* 좌우 칸 머리('빌드로그에서는')가 보이는 넓은 화면에서는 읽기 도구에만 */
+.ansTag {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* 흩어진 조각 vs 정리된 기록 (장식) */
+.scatter {
+  --p: 40px;
+  position: relative;
+  height: 180px;
+}
+
+.scatter > span {
+  position: absolute;
+  display: flex;
+  align-items: center;
   gap: 8px;
-  align-content: start;
+  padding: 10px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--canvas);
+  color: var(--body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-/* ---------- 시작하기 (번호 + 텍스트) ---------- */
+.scatter > span:nth-child(1) {
+  top: 20px;
+  left: var(--p);
+  transform: rotate(-4deg);
+}
+
+.scatter > span:nth-child(2) {
+  top: 0;
+  left: calc(var(--p) + 36%);
+  transform: rotate(3deg);
+}
+
+.scatter > span:nth-child(3) {
+  top: 104px;
+  left: calc(var(--p) + 8%);
+  transform: rotate(2deg);
+}
+
+.scatter > span:nth-child(4) {
+  top: 92px;
+  left: calc(var(--p) + 44%);
+  transform: rotate(-3deg);
+}
+
+.scatter .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--mute);
+}
+
+.tidy {
+  display: flex;
+  align-items: center;
+  height: 180px;
+}
+
+.tidy .timeline {
+  width: 100%;
+}
+
+.tidy .timeline li {
+  background: var(--canvas);
+}
+
+.tidy .timeline li.current {
+  background: var(--primary);
+}
+
+.tidy .current .tlDate,
+.tidy .current .tlText {
+  color: #fff;
+}
+
+/* ---------- 올리기 · 피드 · 프로젝트 ---------- */
+/* 앱 화면 목업 프레임은 누를 수 없는 '화면 캡처'다. 평평한 블록과 구분하려고 그림자로 띄운다. */
+.heroProject,
+.heroPost .post,
+.composer,
+.mock > .post,
+.feed,
+.projectPage {
+  box-shadow: var(--shadow-mock);
+}
+
+.mock {
+  width: 100%;
+  max-width: 440px;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.pairs {
+  list-style: none;
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pairs li {
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  background: var(--surface-card);
+}
+
+.soft .pairs li {
+  background: var(--canvas);
+}
+
+.pairs b {
+  display: block;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.pairs span {
+  display: block;
+  color: var(--mute);
+  font-size: 0.875rem;
+}
+
+.soft .pairs span {
+  color: var(--primary-mute);
+}
+
+.feed,
+.projectPage {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.feedList {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  max-height: 620px;
+  overflow: hidden;
+  background: var(--surface-soft);
+  mask-image: linear-gradient(#000 85%, transparent);
+}
+
+/* 파란 블록 위 캡션은 흰 바탕을 깔아 점선 박스가 묻히지 않게 */
+.soft .caption {
+  background: var(--canvas);
+}
+
+.projectPage .chips {
+  margin-top: 14px;
+}
+
+.segTabs {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  margin-top: 16px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface-card);
+}
+
+.segTabs span {
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--mute);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.segTabs span:first-child {
+  background: var(--canvas);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(17 17 17 / 0.12);
+}
+
+.projectPage .timeline {
+  margin-top: 12px;
+}
+
+/* ---------- 기능: 흰 블록 안 3×2, 구분선 ---------- */
+.featureList {
+  list-style: none;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.featureList li {
+  padding: 28px 28px 28px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.featureList li:not(:nth-child(3n + 1)) {
+  padding-left: 28px;
+  border-left: 1px solid var(--hairline);
+}
+
+.featureIcon {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.featureList p {
+  margin-top: 6px;
+  color: var(--mute);
+}
+
+/* ---------- 누구에게: 파란 블록 안 큰 글자 세 줄 ---------- */
+.whoList {
+  list-style: none;
+  margin-top: 32px;
+}
+
+.whoList li {
+  display: grid;
+  grid-template-columns: 6fr 5fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 24px 0;
+  border-top: 1px solid #c9d6f7;
+}
+
+.whoList h3 {
+  color: var(--ink);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.whoList span {
+  color: var(--primary-mute);
+  font-size: 1.125rem;
+}
+
+/* ---------- 시작하기: 번호 + 타일 ---------- */
 .steps {
   list-style: none;
-  margin-top: 48px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 16px;
 }
 
 .steps li {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 6px 16px;
-  align-content: start;
-}
-
-.steps p {
-  color: var(--mute);
+  padding: 28px;
+  border-radius: var(--r-md);
+  background: var(--surface-card);
 }
 
 .stepNo {
-  grid-row: 1 / 3;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
   display: grid;
   place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  border-radius: 50%;
   background: var(--primary);
   color: #fff;
   font-weight: 700;
 }
 
-/* ---------- FAQ ---------- */
+.steps p {
+  margin-top: 6px;
+  color: var(--mute);
+}
+
+/* ---------- FAQ: 상자형 ---------- */
+.faqBlock {
+  background: var(--surface-card);
+}
+
 .faq {
+  max-width: 880px;
   margin-top: 32px;
-  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 8px;
 }
 
 .faq details {
-  border-bottom: 1px solid var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--canvas);
+}
+
+.faq details[open] {
+  border-color: var(--primary);
 }
 
 .faq summary {
-  cursor: pointer;
-  list-style: none;
-  padding: 20px 40px 20px 0;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: var(--r-md);
   color: var(--ink);
-  font-weight: 700;
   font-size: 1.125rem;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
 }
 
 .faq summary::-webkit-details-marker {
   display: none;
 }
 
-.faq summary::after {
-  content: "+";
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
+.faq summary .icon {
   color: var(--primary);
-  font-size: 1.375rem;
-  font-weight: 400;
+  transition: transform 150ms ease-out;
 }
 
-.faq details[open] summary::after {
-  content: "−";
+.faq details[open] summary .icon {
+  transform: rotate(180deg);
 }
 
 .faq details p {
-  padding: 0 40px 22px 0;
-  color: var(--mute);
+  padding: 0 24px 22px;
+  color: var(--body);
 }
 
-/* ---------- 마무리 · 푸터 ---------- */
+/* ---------- 마무리: 코발트 채움 블록 ---------- */
 .closing {
-  background: var(--surface-dark);
-  color: var(--on-dark);
-  border-radius: var(--r-lg);
-  padding: 72px 32px;
+  padding-block: 96px;
+  background: var(--primary);
+  color: #fff;
   text-align: center;
 }
 
 .closing .h2 {
-  color: var(--on-dark);
+  color: #fff;
 }
 
 .closing p {
-  margin: 12px auto 32px;
-  max-width: 520px;
-  color: var(--on-dark-mute);
+  max-width: 600px;
+  margin: 16px auto 32px;
+  color: #fff;
   font-size: 1.125rem;
 }
 
+.closing .primary {
+  background: #fff;
+  color: var(--primary);
+}
+
+.closing .primary:hover {
+  background: var(--primary-soft);
+}
+
+/* 파란 바탕에서는 파란 포커스 링이 안 보인다 */
+.closing .primary:focus-visible {
+  outline-color: #fff;
+}
+
 .footer {
-  max-width: 1200px;
+  margin-top: 24px;
+  border-top: 0;
+}
+
+.footer {
+  max-width: 1248px;
   margin: 0 auto;
   padding: 48px 24px 32px;
   border-top: 1px solid var(--hairline);
@@ -1272,10 +1409,25 @@
   font-size: 0.875rem;
 }
 
+
 /* ---------- 반응형 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .faq summary .icon {
+    transition: none;
+  }
+}
+
 @media (max-width: 1023px) {
+  .block {
+    padding: 48px 32px;
+  }
+
+  .hero,
   .split {
     grid-template-columns: 1fr;
+  }
+
+  .split {
     gap: 48px;
   }
 
@@ -1283,25 +1435,46 @@
     order: 0;
   }
 
+  .heroText {
+    padding-bottom: 0;
+  }
+
   .heroVisual {
-    grid-template-columns: minmax(0, 480px);
+    width: 100%;
+    max-width: 480px;
+    height: 460px;
+    justify-self: center;
   }
 
-  .arrowIcon {
-    transform: none;
+  .heroProject {
+    width: 84%;
   }
 
-  .flowArrow {
-    flex-direction: row;
-    max-width: none;
-    padding: 12px 0;
+  .heroPost {
+    width: 68%;
   }
 
-  .whyGrid,
-  .featureList,
-  .whoGrid,
-  .steps {
+  .featureList {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .featureList li:not(:nth-child(3n + 1)) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .featureList li:nth-child(even) {
+    padding-left: 24px;
+    border-left: 1px solid var(--hairline);
+  }
+
+  .steps,
+  .whoList li {
+    grid-template-columns: 1fr;
+  }
+
+  .whoList li {
+    gap: 4px;
   }
 }
 
@@ -1318,43 +1491,83 @@
     margin-left: -12px;
   }
 
-  .section {
-    padding: 56px 16px;
+  .main {
+    padding: 0 16px;
   }
 
-  .hero {
-    padding-top: 32px;
+  .block {
+    margin-top: 16px;
+    padding: 40px 20px;
+    border-radius: var(--r-md);
   }
 
-  .heroText {
-    text-align: left;
-  }
-
-  .heroText .actions {
-    justify-content: flex-start;
-  }
-
+  /* 좁은 화면: 목업을 겹치지 않고 쌓는다(첫 게시물 화면이 먼저) */
   .heroVisual {
-    margin-top: 32px;
+    height: auto;
+    margin-bottom: -48px;
+    display: grid;
+    gap: 16px;
   }
 
-  .whyGrid,
-  .featureList,
-  .whoGrid,
-  .steps {
+  .heroProject,
+  .heroPost,
+  .heroVisual .caption {
+    position: static;
+    width: 100%;
+  }
+
+  .heroPost {
+    order: -1;
+  }
+
+  .heroVisual .caption {
+    margin-top: 16px;
+  }
+
+  .why {
+    margin-top: 112px;
+  }
+
+  .ba {
+    grid-template-columns: 1fr;
+    border-radius: var(--r-md);
+  }
+
+  .ba > * {
+    padding-inline: 20px;
+  }
+
+  .baHead + .baHead,
+  .tidy {
+    display: none;
+  }
+
+  .scatter {
+    --p: 16px;
+    height: 150px;
+  }
+
+  .ansTag {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    color: var(--primary);
+    font-size: 0.875rem;
+  }
+
+  .pairs,
+  .featureList {
     grid-template-columns: 1fr;
   }
 
-  .pairs li {
-    grid-template-columns: 22px 1fr;
-  }
-
-  .pairs em {
-    grid-column: 2;
+  .featureList li:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
   }
 
   .closing {
-    padding: 48px 20px;
-    border-radius: var(--r-md);
+    padding-block: 56px;
   }
 }

@@ -1,5 +1,5 @@
 ---
-version: 1.1
+version: 1.2
 name: buildlog-design
 description: |
   사진 중심 SNS 홍보 페이지용 디자인 시스템. awesome-design-md의 Pinterest DESIGN.md
@@ -23,7 +23,7 @@ colors:
   surface-soft: "#fbfbf9"   # 페이지 바탕
   surface-card: "#f6f6f3"   # 카드·타일·그리드 칸 바탕
   secondary-bg: "#e5e5e0"   # 보조 버튼 모양
-  surface-dark: "#262622"   # 마무리 띠
+  surface-dark: "#262622"   # 현재 화면에서 쓰지 않음(1.2에서 마무리 띠가 primary 블록으로 바뀜)
   on-dark: "#ffffff"
   on-dark-mute: "rgba(255,255,255,0.72)"
   like: "#ef4b5f"           # 화면 속 채워진 하트 아이콘에만 사용
@@ -47,7 +47,7 @@ rounded:
   xs: 6px       # 목업 안 작은 조각(HUD, 시간 표시, 로고 마크), 포커스 링
   sm: 12px      # 내비 항목, 타임라인 행, 작은 화면 조각, 프레임 안의 게시물
   md: 16px      # 카드, 게시물, 버튼
-  lg: 32px      # 히어로·피드·프로젝트 프레임, 마무리 띠
+  lg: 32px      # 섹션 블록, 피드·프로젝트 프레임, 비교 표
   full: 9999px
 
 spacing:
@@ -63,21 +63,22 @@ components:
   primary-nav:       { bg: surface-soft, height: 64px, border-bottom: "1px hairline", sticky: true, blur: none }
   button-primary:    { bg: primary, text: on-primary, type: button-md, rounded: md, height: 48px, padding: "0 22px" }
   link-arrow:        { text: ink, type: body-strong, underline: "offset 4px" }
-  label-chip:        { bg: primary-soft, text: primary, type: body-sm-strong, rounded: full, padding: "6px 14px" }
+  label-chip:        { bg: primary-soft, text: primary, type: body-sm-strong, rounded: full, padding: "4px 12px" }   # 섹션 키커·히어로 라벨. primary-soft 블록 위에서는 bg canvas
+  section-block:     { bg: "canvas + 1px hairline 또는 primary-soft", rounded: lg, padding: "72px 64px", gap: 24px, max-width: 1200px }   # 모든 섹션을 블록으로 나눈다. 흰 블록과 파란 블록을 번갈아 둔다. 767px 이하 rounded md, padding 40px 20px
   post-card:         { bg: canvas, border: "1px hairline", rounded: md, padding: 0, image: "1:1 full-bleed" }
   post-header:       { avatar: "32px full", name: body-sm-strong, handle: "caption mute", padding: "12px 14px" }
   post-actions:      { icons: "24px stroke 1.8 ink", gap: 14px, padding: "10px 14px 4px", counts: none }
   profile-header:    { avatar: "88px full", name: heading-lg, handle: "body-sm mute", follow: "button-primary 모양, 비상호작용" }
   profile-grid:      { columns: 3, gap: 4px, cell: "1:1 surface-card", rounded: "0 (그리드 바깥만 md)" }
-  feature-row:       { icon: "24px primary, 제목 왼쪽", title: heading-md, body: "body-md mute", card: none, columns: 2 }
-  who-row:           { border-top: "1px hairline", title: heading-md, body: "body-md mute", card: none, columns: 3 }
-  why-card:          { bg: canvas, border: "1px hairline", rounded: md, padding: 28px }   # 문제/답 대비가 있는 유일한 카드 그리드
+  feature-row:       { icon: "24px primary, 제목 위", title: heading-md, body: "body-md mute", card: none, columns: 3, divider: "1px hairline 위·왼쪽" }
+  who-row:           { border-top: "1px #c9d6f7", title: "heading-lg 22px 700", body: "18px primary-mute", card: none, columns: "6fr 5fr" }   # 파란 블록 안
+  why-compare:       { columns: 2, left: "surface-card 지금은", right: "primary-soft 빌드로그에서는", rounded: lg, row-divider: "1px hairline / #c9d6f7", cell-padding: "20px 40px" }   # 위 행은 장식 그림(흩어진 조각 / 정리된 타임라인)
   category-tile:     { bg: surface-card, rounded: md, image: "4:5 rounded md", label: body-strong }
-  step:              { number: "40px full primary, 제목 왼쪽", title: heading-md, card: none }
+  step:              { number: "40px full primary, 제목 위", title: heading-md, bg: surface-card, rounded: md, padding: 28px }
   example-caption:   { text: "primary body-sm 600", border: "1px dashed primary", rounded: full, padding: "4px 14px", align: center }   # 목업 아래 '예시입니다' 안내. 목업 안 칩·탭과 구분되도록 점선
-  faq-row:           { border-bottom: "1px hairline", summary: body-strong 18px, padding: "20px 0" }
-  closing-strip:     { bg: surface-dark, text: on-dark, rounded: lg, padding: "72px 32px" }
-  footer:            { bg: canvas, text: "body-sm mute", border-top: "1px hairline", padding: "32px 24px" }
+  faq-row:           { bg: canvas, border: "1px hairline, 펼침 시 primary", rounded: md, summary: "body-strong 18px + chevron", padding: "20px 24px", gap: 8px }   # 회색(surface-card) 블록 안 상자형
+  closing-strip:     { bg: primary, text: "#ffffff", button: "canvas 바탕 primary 글자", rounded: lg, padding: "96px 64px" }   # 흰 글자는 primary 위에서만. 포커스 링은 흰색
+  footer:            { bg: surface-soft, text: "body-sm mute", border-top: none, padding: "48px 24px 32px" }
 ---
 
 ## 개요
@@ -90,16 +91,15 @@ components:
 2. **강조색은 하나.** `primary` 파랑은 주 CTA·로고·라벨 칩에만 쓴다. 한 화면 높이에 파란 버튼은 하나까지. 처음 쓰던 보라 `#5b3df5`는 사용자 지시로 걷어냈다(2026-09-16). 코발트 파랑을 고른 이유는 목업 세 화면의 색(민트·연두·노랑·토마토·올리브)과 겹치지 않는 유일한 색상군이라 사이트 요소와 화면 캡처가 섞이지 않기 때문이다.
 3. **모서리는 토큰 값만.** 대부분 16px, 큰 프레임과 띠 32px, 앱 화면 안의 작은 조각 12px·6px, 원형은 full. 각진 버튼·카드는 없다.
 4. **페이지 내용은 평평하게, 화면 캡처는 떠 있게.** 설명 카드·목록·FAQ는 그림자 없이 1px `hairline`으로만 구분한다. 반대로 앱 화면 목업 프레임(히어로의 피드 창·프로젝트 창, 올리기 입력창과 게시물, 피드 창, 프로젝트 창)은 실제로 누를 수 없는 '화면 캡처'이므로 `shadow-mock` 그림자로 띄워 페이지 내용과 깊이를 다르게 한다. 프레임의 1px 테두리는 그대로 두며, 이 겹침은 의도된 것이다(사용자 지시 2026-09-16). 프레임 안의 게시물·타일에는 그림자를 주지 않는다.
-5. **카드는 구조가 아니다.** 아이콘·제목·본문 카드 3열을 섹션마다 반복하지 않는다. 기능은 아이콘을 왼쪽에 둔 2열 목록, 누구에게는 1px 윗줄, 시작하기는 번호 + 텍스트로 쓰고, 카드는 왜 섹션처럼 문제/답 대비가 있을 때만 쓴다.
+5. **섹션은 색 블록, 카드는 구조가 아니다.** (1.2, 사용자가 시안 C를 골라 2026-09-18 적용) 모든 섹션을 32px 모서리 블록으로 나누고 흰 블록(`canvas` + hairline)과 파란 블록(`primary-soft`)을 번갈아 둔다. 히어로 목업은 블록 아래로 넘쳐 떠 있다. 블록 안에서는 아이콘·제목·본문 카드 3열을 반복하지 않는다: 기능은 구분선 3×2 목록, 누구에게는 큰 글자 줄, 왜는 두 칸 비교 표다. 시작하기만 번호 타일 3개(`step`)를 쓴다. 마무리는 `primary` 채움 블록 하나뿐이며, 흰 글자는 그 위에서만 쓴다.
 
 2026-09-16에 Impeccable(impeccable.style) 스킬의 탐지 규칙과 craft-floor로 점검해 카드 반복, 아이콘 타일, 카드 한쪽 색 테두리, 유리 헤더, 색 배경 위 회색 글자를 없앴다. 목업 안의 달 glow·픽셀 격자·민트-온-다크와 목업 프레임의 테두리+그림자는 앱 화면 묘사와 깊이 구분에 필요하므로 탐지 대상이어도 유지한다.
 
 ## 레이아웃
 
-- 콘텐츠 최대 폭 1200px, 좌우 여백 데스크톱 24px / 모바일 16px.
-- 히어로: 상단 여백 48px(모바일 32px), 제목 최대 52px, 목업은 버튼 아래 40px(모바일 32px). 1440×900과 390×844 첫 화면에 히어로 목업의 첫 게시물 화면이 보여야 한다.
-- 섹션 간격 `section` 96px → 태블릿 72px → 모바일 56px.
-- 섹션은 **텍스트 한쪽 + 화면 한쪽** 2열을 기본으로 하고, 좌우를 번갈아 배치한다(Pinterest 홈의 교차 배치). 768px 이하에서 텍스트 위, 화면 아래 1열.
+- 콘텐츠(블록) 최대 폭 1200px, 좌우 여백 데스크톱 24px / 모바일 16px. 블록 사이 24px(모바일 16px), 블록 안 여백 72px 64px → 태블릿 48px 32px → 모바일 40px 20px.
+- 히어로: `primary-soft` 블록 5:7 두 칸. 오른쪽 목업(프로젝트 창 420px 위에 게시물 330px가 겹침)은 블록 아래로 120px 넘치고 예시 캡션은 그 아래. 1023px 이하는 한 칸, 767px 이하는 게시물 → 프로젝트 창 순서로 겹치지 않게 쌓는다. 1440×900과 390×844 첫 화면에 히어로의 첫 게시물 화면이 보여야 한다.
+- 올리기·피드·프로젝트 블록은 **텍스트 한쪽 + 화면 한쪽** 2열이고 피드만 화면이 왼쪽이다. 1023px 이하에서 텍스트 위, 화면 아래 1열.
 - 피드 화면 열 폭은 최대 470px로 실제 SNS 피드 비율을 따른다.
 
 ## 게시물 이미지 (CSS로 그리기)

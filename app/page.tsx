@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import styles from "./page.module.css";
 import { SERVICE, TAGLINE } from "./site";
 import { sw, H1, H2, H3, LEAD, BODY } from "./wrap";
@@ -113,9 +114,7 @@ const paths = {
   clock: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 8v4l3 2",
   feed: "M4 5h16v5H4zM4 14h16v5H4z",
   spark: "M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6",
-  scatter: "M4 6h6v6H4zM14 4h6v5h-6zM13 14h7v6h-7zM5 16h5v4H5z",
-  calendar: "M4 6h16v14H4zM4 10h16M8 3v4M16 3v4",
-  noise: "M4 7h16M4 12h10M4 17h16M18 11l3 3-3 3",
+  chevron: "M6 9l6 6 6-6",
 } as const;
 type IconName = keyof typeof paths;
 
@@ -255,6 +254,19 @@ function FrameBar({ tab }: { tab: string }) {
 }
 
 /* ---------- 페이지 ---------- */
+function ProjectHead() {
+  return (
+    <div className={styles.projectHead}>
+      <Avatar kind="timer" />
+      <div>
+        <p className={styles.projectName}>{timer.name}</p>
+        <p className={styles.projectDesc}>{timer.desc}</p>
+        <p className={styles.projectMeta}>{timer.maker} {timer.handle} · 현재 {timer.version}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -275,11 +287,11 @@ export default function Home() {
         </div>
       </header>
 
-      <main>
-        {/* S-01 */}
-        <section id="hero" className={`${styles.section} ${styles.hero}`} aria-labelledby="hero-title">
+      <main className={styles.main}>
+        {/* S-01: 파란 블록. 목업은 블록 아래로 넘친다 */}
+        <section id="hero" className={`${styles.block} ${styles.soft} ${styles.hero}`} aria-labelledby="hero-title">
           <div className={styles.heroText}>
-            <p className={styles.eyebrow}>{TAGLINE}</p>
+            <p className={styles.kicker}>{TAGLINE}</p>
             <h1 id="hero-title" className={styles.h1}>
               {sw("오늘 만든 것을 올리면,", H1)} <span className={styles.nowrap}>프로젝트가 알려집니다</span>
             </h1>
@@ -296,65 +308,68 @@ export default function Home() {
           </div>
 
           <figure className={styles.heroVisual}>
-            <div className={styles.heroFeed}>
-              <FrameBar tab="피드" />
-              <div className={styles.heroFeedBody}>
-                <Post project={timer} text={POST_TEXT} video />
-              </div>
-            </div>
-            <div className={styles.flowArrow} aria-hidden="true">
-              <Icon name="down" className={styles.arrowIcon} />
-              <span>같은 게시물이 프로젝트 페이지에도</span>
-            </div>
             <div className={styles.heroProject}>
               <FrameBar tab="프로젝트" />
               <div className={styles.projectBody}>
-                <div className={styles.projectHead}>
-                  <Avatar kind="timer" />
-                  <div>
-                    <p className={styles.projectName}>{timer.name}</p>
-                    <p className={styles.projectDesc}>{timer.desc}</p>
-                    <p className={styles.projectMeta}>{timer.maker} {timer.handle} · 현재 {timer.version}</p>
-                  </div>
-                </div>
+                <ProjectHead />
                 <p className={styles.tlLabel}>개발 기록</p>
                 <Timeline compact />
               </div>
+            </div>
+            <div className={styles.heroPost}>
+              <Post project={timer} text={POST_TEXT} video />
             </div>
             <figcaption className={styles.caption}>화면 속 프로젝트와 게시물은 예시입니다.</figcaption>
           </figure>
         </section>
 
-        {/* S-02 왜 */}
-        <div className={styles.band}>
-          <section id="why" className={styles.section} aria-labelledby="why-title">
-            <div className={styles.center}>
-              <h2 id="why-title" className={styles.h2}>{sw("만든 것은 많은데, 알리기는 어렵습니다", H2)}</h2>
-              <p className={styles.sectionLead}>
-                {sw("개발자는 매일 무언가를 만들지만 그 과정은 여기저기 흩어지고, 프로젝트는 출시 날 하루만 알려집니다.", LEAD)}
-              </p>
+        {/* S-02 왜: 지금은 / 빌드로그에서는 */}
+        <section id="why" className={`${styles.block} ${styles.white} ${styles.why}`} aria-labelledby="why-title">
+          <h2 id="why-title" className={styles.h2}>{sw("만든 것은 많은데, 알리기는 어렵습니다", H2)}</h2>
+          <p className={styles.sectionLead}>
+            {sw("개발자는 매일 무언가를 만들지만 그 과정은 여기저기 흩어지고, 프로젝트는 출시 날 하루만 알려집니다.", LEAD)}
+          </p>
+          <div className={styles.ba}>
+            <p className={styles.baHead}>지금은</p>
+            <p className={styles.baHead}>{SERVICE}에서는</p>
+            <div className={styles.scatter} aria-hidden="true">
+              <span><Icon name="folder" />스크린샷 폴더</span>
+              <span><Icon name="image" />영상 링크</span>
+              <span><Icon name="feed" />블로그 글</span>
+              <span><Icon name="tag" />출시 소식</span>
             </div>
-            <ul className={styles.whyGrid}>
-              {why.map((w, i) => (
-                <li key={w.title}>
-                  <Icon name={(["scatter", "calendar", "noise"] as const)[i]} className={styles.whyIcon} />
-                  <h3 className={styles.h3}>{sw(w.title, H3)}</h3>
-                  <p className={styles.problem}>{sw(w.problem, BODY)}</p>
-                  <p className={styles.answer}>
-                    <span className={styles.answerTag}>{SERVICE}에서는</span>
-                    {sw(w.answer, BODY)}
-                  </p>
+            <div className={styles.tidy} aria-hidden="true">
+              <ol className={`${styles.timeline} ${styles.timelineCompact}`}>
+                <li className={styles.current}>
+                  <span className={styles.tlDate}>{timeline[0].date}</span>
+                  <span className={styles.tlText}>{timeline[0].text}</span>
                 </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+                <li>
+                  <span className={styles.tlDate}>{timeline[2].date}</span>
+                  <span className={styles.tlText}>{timeline[2].text}</span>
+                </li>
+              </ol>
+            </div>
+            {why.map((w) => (
+              <Fragment key={w.title}>
+                <div className={styles.baRow}>
+                  <h3 className={styles.h3}>{sw(w.title, H3)}</h3>
+                  <p>{sw(w.problem, BODY)}</p>
+                </div>
+                <p className={styles.ans}>
+                  <span className={styles.ansTag}>{SERVICE}에서는</span>
+                  {sw(w.answer, BODY)}
+                </p>
+              </Fragment>
+            ))}
+          </div>
+        </section>
 
         {/* S-03 올리기 */}
-        <section id="post" className={`${styles.section} ${styles.split}`} aria-labelledby="post-title">
+        <section id="post" className={`${styles.block} ${styles.white} ${styles.split}`} aria-labelledby="post-title">
           <div>
             <p className={styles.kicker}>올리기</p>
-            <h2 id="post-title" className={styles.h2}>{sw("링크 하나 붙이면 게시물이 됩니다", H2)}</h2>
+            <h2 id="post-title" className={styles.h2}>{sw("링크 하나 붙이면", H2)} <span className={styles.nowrap}>게시물이 됩니다</span></h2>
             <p className={styles.sectionLead}>
               {sw(
                 "입력창은 하나뿐입니다. 스크린샷, GIF, 유튜브 영상 링크, GitHub 링크를 붙이고 한 줄만 쓰면 알맞은 카드로 바뀝니다. 유튜브에 올려 둔 개발 영상도 그대로 게시물이 됩니다.",
@@ -362,14 +377,14 @@ export default function Home() {
               )}
             </p>
             <ul className={styles.pairs}>
-              <li><Icon name="image" /><span>스크린샷, GIF</span><em>이미지 게시물</em></li>
-              <li><Icon name="link" /><span>유튜브, 쇼츠 링크</span><em>영상 카드</em></li>
-              <li><Icon name="code" /><span>GitHub 링크</span><em>저장소 카드</em></li>
-              <li><Icon name="globe" /><span>웹사이트 링크</span><em>링크 미리보기</em></li>
+              <li><b>스크린샷, GIF</b><span>이미지 게시물</span></li>
+              <li><b>유튜브, 쇼츠 링크</b><span>영상 카드</span></li>
+              <li><b>GitHub 링크</b><span>저장소 카드</span></li>
+              <li><b>웹사이트 링크</b><span>링크 미리보기</span></li>
             </ul>
           </div>
 
-          <figure className={styles.composerFlow}>
+          <figure className={styles.mock}>
             <div className={styles.composer}>
               <p className={styles.composerHint}>오늘 뭘 만들었나요?</p>
               <p className={styles.composerText}>
@@ -384,7 +399,7 @@ export default function Home() {
                 <span className={styles.fakeButton}>게시</span>
               </div>
             </div>
-            <div className={`${styles.flowArrow} ${styles.flowArrowDown}`} aria-hidden="true">
+            <div className={styles.flowArrow} aria-hidden="true">
               <Icon name="down" />
               <span>영상 카드로 바뀜</span>
             </div>
@@ -394,27 +409,27 @@ export default function Home() {
         </section>
 
         {/* S-04 피드 */}
-        <div className={styles.band}>
-          <section id="feed" className={`${styles.section} ${styles.split} ${styles.reverse}`} aria-labelledby="feed-title">
-            <div>
-              <p className={styles.kicker}>피드</p>
-              <h2 id="feed-title" className={styles.h2}>
-                {sw("만들어지는 중인", H2)} <span className={styles.nowrap}>프로젝트를 봅니다</span>
-              </h2>
-              <p className={styles.sectionLead}>
-                {sw(
-                  `여러 개발자의 새 게시물이 한 피드에 흐릅니다. 사용자 게시물 사이에 ${SERVICE}의 공식 카드가 섞여 있어, 게시물이 적은 날에도 피드가 비지 않습니다.`,
-                  LEAD,
-                )}
-              </p>
-              <ul className={styles.pairs}>
-                <li><Icon name="tag" /><span>오늘의 만들기 주제</span><em>무엇을 올릴지 알려 주는 카드</em></li>
-                <li><Icon name="code" /><span>개발 팁과 기술 소식</span><em>짧은 카드뉴스</em></li>
-                <li><Icon name="folder" /><span>이번 주 프로젝트</span><em>올라온 프로젝트를 다시 소개</em></li>
-              </ul>
-            </div>
+        <section id="feed" className={`${styles.block} ${styles.soft} ${styles.split} ${styles.reverse}`} aria-labelledby="feed-title">
+          <div>
+            <p className={styles.kicker}>피드</p>
+            <h2 id="feed-title" className={styles.h2}>
+              {sw("만들어지는 중인", H2)} <span className={styles.nowrap}>프로젝트를 봅니다</span>
+            </h2>
+            <p className={styles.sectionLead}>
+              {sw(
+                `여러 개발자의 새 게시물이 한 피드에 흐릅니다. 사용자 게시물 사이에 ${SERVICE}의 공식 카드가 섞여 있어, 게시물이 적은 날에도 피드가 비지 않습니다.`,
+                LEAD,
+              )}
+            </p>
+            <ul className={styles.pairs}>
+              <li><b>오늘의 만들기 주제</b><span>무엇을 올릴지 알려 주는 카드</span></li>
+              <li><b>개발 팁과 기술 소식</b><span>짧은 카드뉴스</span></li>
+              <li><b>이번 주 프로젝트</b><span>올라온 프로젝트를 다시 소개</span></li>
+            </ul>
+          </div>
 
-            <figure className={styles.feed}>
+          <figure className={styles.mock}>
+            <div className={styles.feed}>
               <FrameBar tab="피드" />
               <div className={styles.feedList}>
                 <Post project={garden} text="새로 그린 밤 정원 타일셋이에요" />
@@ -426,13 +441,13 @@ export default function Home() {
                 <Post project={recipe} text="재료 검색 결과 화면을 정리했어요" />
                 <Post project={timer} text={POST_TEXT} video />
               </div>
-              <figcaption className={styles.caption}>화면 속 프로젝트와 게시물은 예시입니다.</figcaption>
-            </figure>
-          </section>
-        </div>
+            </div>
+            <figcaption className={styles.caption}>화면 속 프로젝트와 게시물은 예시입니다.</figcaption>
+          </figure>
+        </section>
 
         {/* S-05 프로젝트 페이지 */}
-        <section id="project" className={`${styles.section} ${styles.split}`} aria-labelledby="project-title">
+        <section id="project" className={`${styles.block} ${styles.white} ${styles.split}`} aria-labelledby="project-title">
           <div>
             <p className={styles.kicker}>프로젝트 페이지</p>
             <h2 id="project-title" className={styles.h2}>{sw("게시물은 프로젝트 페이지에 기록으로 쌓입니다", H2)}</h2>
@@ -444,93 +459,85 @@ export default function Home() {
             </p>
           </div>
 
-          <figure className={styles.projectPage}>
-            <FrameBar tab="프로젝트" />
-            <div className={styles.projectBody}>
-              <div className={styles.projectHead}>
-                <Avatar kind="timer" />
-                <div>
-                  <p className={styles.projectName}>{timer.name}</p>
-                  <p className={styles.projectDesc}>{timer.desc}</p>
-                  <p className={styles.projectMeta}>{timer.maker} {timer.handle} · 현재 {timer.version}</p>
+          <figure className={styles.mock}>
+            <div className={styles.projectPage}>
+              <FrameBar tab="프로젝트" />
+              <div className={styles.projectBody}>
+                <ProjectHead />
+                <div className={styles.chips} aria-hidden="true">
+                  <span className={styles.chip}>Flutter</span>
+                  <span className={styles.chip}>Supabase</span>
+                  <span className={styles.chip}><Icon name="code" />GitHub</span>
+                  <span className={styles.chip}><Icon name="globe" />웹사이트</span>
                 </div>
+                <div className={styles.shots}>
+                  <Shot kind="timer" small />
+                  <Shot kind="timer" small video />
+                  <Shot kind="timer" small />
+                </div>
+                <div className={styles.segTabs} aria-hidden="true">
+                  <span>개발 기록</span>
+                  <span>스크린샷</span>
+                  <span>소개</span>
+                </div>
+                <Timeline />
               </div>
-              <div className={styles.chips} aria-hidden="true">
-                <span className={styles.chip}>Flutter</span>
-                <span className={styles.chip}>Supabase</span>
-                <span className={styles.chip}><Icon name="code" />GitHub</span>
-                <span className={styles.chip}><Icon name="globe" />웹사이트</span>
-              </div>
-              <div className={styles.shots}>
-                <Shot kind="timer" small />
-                <Shot kind="timer" small video />
-                <Shot kind="timer" small />
-              </div>
-              <p className={styles.tlLabel}>개발 기록</p>
-              <Timeline />
             </div>
             <figcaption className={styles.caption}>화면 속 프로젝트는 예시입니다.</figcaption>
           </figure>
         </section>
 
         {/* S-06 기능 */}
-        <div className={styles.band}>
-          <section id="features" className={styles.section} aria-labelledby="features-title">
-            <div className={styles.center}>
-              <h2 id="features-title" className={styles.h2}>한눈에 보는 기능</h2>
-            </div>
-            <ul className={styles.featureList}>
-              {features.map((f) => (
-                <li key={f.title}>
-                  <Icon name={f.icon} className={styles.featureIcon} />
-                  <h3 className={styles.h3}>{sw(f.title, H3)}</h3>
-                  <p>{sw(f.body, BODY)}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+        <section id="features" className={`${styles.block} ${styles.white}`} aria-labelledby="features-title">
+          <h2 id="features-title" className={styles.h2}>한눈에 보는 기능</h2>
+          <ul className={styles.featureList}>
+            {features.map((f) => (
+              <li key={f.title}>
+                <Icon name={f.icon} className={styles.featureIcon} />
+                <h3 className={styles.h3}>{sw(f.title, H3)}</h3>
+                <p>{sw(f.body, BODY)}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         {/* S-07 누구에게 */}
-        <section id="who" className={styles.section} aria-labelledby="who-title">
-          <div className={styles.center}>
-            <h2 id="who-title" className={styles.h2}>이런 분에게 맞습니다</h2>
-          </div>
-          <ul className={styles.whoGrid}>
+        <section id="who" className={`${styles.block} ${styles.soft}`} aria-labelledby="who-title">
+          <h2 id="who-title" className={styles.h2}>이런 분에게 맞습니다</h2>
+          <ul className={styles.whoList}>
             {who.map((w) => (
               <li key={w.title}>
-                <h3 className={styles.h3}>{sw(w.title, H3)}</h3>
-                <p>{sw(w.body, BODY)}</p>
+                <h3>{sw(w.title, H3)}</h3>
+                <span>{sw(w.body, BODY)}</span>
               </li>
             ))}
           </ul>
         </section>
 
         {/* S-08 시작하기 */}
-        <div className={styles.band}>
-          <section id="start" className={styles.section} aria-labelledby="start-title">
-            <div className={styles.center}>
-              <h2 id="start-title" className={styles.h2}>세 단계로 시작하세요</h2>
-            </div>
-            <ol className={styles.steps}>
-              {steps.map((s, i) => (
-                <li key={s.title}>
-                  <span className={styles.stepNo} aria-hidden="true">{i + 1}</span>
-                  <h3 className={styles.h3}>{sw(s.title, H3)}</h3>
-                  <p>{sw(s.body, BODY)}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
-        </div>
+        <section id="start" className={`${styles.block} ${styles.white}`} aria-labelledby="start-title">
+          <h2 id="start-title" className={styles.h2}>세 단계로 시작하세요</h2>
+          <ol className={styles.steps}>
+            {steps.map((s, i) => (
+              <li key={s.title}>
+                <span className={styles.stepNo} aria-hidden="true">{i + 1}</span>
+                <h3 className={styles.h3}>{sw(s.title, H3)}</h3>
+                <p>{sw(s.body, BODY)}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
         {/* S-09 FAQ */}
-        <section id="faq" className={`${styles.section} ${styles.narrow}`} aria-labelledby="faq-title">
+        <section id="faq" className={`${styles.block} ${styles.faqBlock}`} aria-labelledby="faq-title">
           <h2 id="faq-title" className={styles.h2}>자주 묻는 질문</h2>
           <div className={styles.faq}>
             {faqs.map((f, i) => (
               <details key={f.q} open={i === 0}>
-                <summary>{sw(f.q, H3)}</summary>
+                <summary>
+                  {sw(f.q, H3)}
+                  <Icon name="chevron" />
+                </summary>
                 <p>{sw(f.a, BODY)}</p>
               </details>
             ))}
@@ -538,12 +545,10 @@ export default function Home() {
         </section>
 
         {/* S-10 마무리 */}
-        <section id="closing" className={styles.section} aria-labelledby="closing-title">
-          <div className={styles.closing}>
-            <h2 id="closing-title" className={styles.h2}>{sw("오늘 만든 화면 한 장부터 올려 보세요", H2)}</h2>
-            <p>{sw("완성하지 않아도 괜찮습니다. 만드는 과정이 그대로 프로젝트 소개가 됩니다.", LEAD)}</p>
-            <a href="#feed" className={styles.primary}>화면 둘러보기</a>
-          </div>
+        <section id="closing" className={`${styles.block} ${styles.closing}`} aria-labelledby="closing-title">
+          <h2 id="closing-title" className={styles.h2}>{sw("오늘 만든 화면 한 장부터 올려 보세요", H2)}</h2>
+          <p>{sw("완성하지 않아도 괜찮습니다. 만드는 과정이 그대로 프로젝트 소개가 됩니다.", LEAD)}</p>
+          <a href="#feed" className={styles.primary}>화면 둘러보기</a>
         </section>
       </main>
 
