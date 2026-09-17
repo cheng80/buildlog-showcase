@@ -48,7 +48,7 @@
 ## 6. 다음 작업
 
 1. 운영 URL https://buildlog-showcase.vercel.app 에서 v2.5(시안 C) 화면을 사용자가 확인. 되돌리려면 태그 `1차완료`.
-2. 시안 A·B의 정적 HTML은 세션 scratchpad에만 있었고 저장소에 넣지 않았다. 다시 필요하면 이 절의 설명으로 재작성한다.
+2. 시안 A·B·C 정적 HTML은 `_workspace/design-drafts-2026-09-18/`(Git 제외)에 보관했다. `a.html` `b.html` `c.html`과 공통 `mock.css`(운영 CSS 복사본)·`mock.js`(목업 조각 찍어내기, 시안 전용). 폴더에서 `python3 -m http.server`로 띄워 본다.
 
 이전 목록(v2.4):
 
@@ -85,7 +85,7 @@
 |---|---|---|---|---|---|---|
 | v2.5 정적 분석·타입·빌드 | PASS | RECHECKED | 2026-09-18 | v2.5 | CURRENT | `npm run lint`, `npm run typecheck`, `npm run build`(`/` ○ 정적) 통과 |
 | v2.5 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-18 | v2.5 | CURRENT | `next start` 빌드 결과를 Playwright(Chrome) 360·390·768·1440px: 가로 넘침 0, `#` 앵커 대상 모두 존재, 앵커 도착 시 제목이 헤더 아래, Tab이 링크·FAQ summary만 거침, 둘째 FAQ Enter로 열림. 1440·390 전체 스크린샷 육안 확인(히어로 캡션 겹침·올리기 제목 외톨이 어절·모바일 히어로 순서를 고친 뒤 재검사) |
-| v2.5 운영 배포 확인 | NOT_RUN | NONE | 2026-09-18 | v2.5 | UNKNOWN | push 뒤 자동 배포 결과는 이 표를 쓸 때 아직 확인 전 |
+| v2.5 운영 배포 확인 | PASS | RECHECKED | 2026-09-18 | 2d6591b | CURRENT | `main` push 후 source=git 운영 배포 Ready(31초). https://buildlog-showcase.vercel.app 응답에 새 문구 "지금은" 확인 |
 | 정적 분석·타입 | PASS | RECHECKED | 2026-09-16 | v2.3+그림자 | CURRENT | `npm run lint`, `npm run typecheck` 통과. 그림자 추가 뒤 lint 재실행 |
 | 운영 빌드 | PASS | RECHECKED | 2026-09-16 | v2.3+그림자 | CURRENT | `npm run build`, `/` 정적(○). 그림자 추가 뒤 재실행 |
 | 반응형·앵커·키보드·FAQ | PASS | RECHECKED | 2026-09-16 | v2.3 | CURRENT | Playwright(Chrome, `next start` 빌드 결과) 360·390·768·1440px 가로 넘침 없음, `#` 앵커 16개 대상 모두 존재·`#`만 있는 링크 0, 9개 섹션 도착 시 제목 top ≥ 헤더 bottom, Tab 20회가 링크 16개·FAQ summary 4개만 거침, 첫 FAQ 기본 펼침·둘째 Enter로 열림. 스크린샷 육안 확인 |

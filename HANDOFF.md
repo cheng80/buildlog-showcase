@@ -9,7 +9,7 @@
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog-showcase/` (Next.js 프로젝트 + 기획 문서). 2026-09-17에 `buildlog/`에서 이름을 바꿨다: `buildlog`는 앞으로 실제로 만들 서비스 프로젝트에 쓰고, 이 저장소는 그 서비스를 홍보하는 사이트다. 같은 날 GitHub 저장소(cheng80/buildlog-showcase)와 Vercel 프로젝트(buildlog-showcase)도 같은 이름으로 바꿨다. 이 파일은 저장소 루트에 있다 |
 | 현재 단계 | **v2.5: 섹션 디자인을 시안 C(코발트 블록)로 교체, 커밋·push.** 교체 전 상태는 태그 `1차완료`(v2.4) |
-| 바로 할 일 | 운영 URL https://buildlog-showcase.vercel.app 에서 v2.5 화면을 사용자가 확인. 자동 배포 결과 확인은 `docs/03` 9절 |
+| 바로 할 일 | 운영 URL https://buildlog-showcase.vercel.app 에서 v2.5(시안 C) 화면을 사용자가 확인(자동 배포 Ready 확인 완료) |
 | 공개 URL | **https://buildlog-showcase.vercel.app** (운영, 공개). `buildlog-showcase-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
 | 서비스 개념 근거 | `_workspace/chatgpt-project-idea-2026-09-16.md` (ChatGPT 기획 대화 전체 추출본, Git 제외) |
@@ -39,11 +39,13 @@
 10. 사용자 "보라색은 걷어 내자. 다른 색 추천" → 코발트 파랑 `#1e4fd8`(추천)·잉크 블랙·번트 오렌지 3안 제시, 파랑을 개발 서버에 미리보기 → "커밋/푸시"로 파랑 확정. 파비콘·OG 이미지 재렌더·문서 동기화 후 커밋·push(12701b7).
 11. 사용자 "semantic-wrap 설치 후 모든 화면 텍스트 검사", "필요시 폭도 조절" → `app/wrap.ts`(빌드 시 서버에서 모델 실행, NBSP 삽입, 클라이언트 JS 0) + `text-wrap: balance`. 외톨이 어절 45→0. 폭은 시뮬레이션상 이득이 없어 그대로. 피드 제목은 사용자 지적으로 손 지정. 커밋·push.
 12. (2026-09-17) 사용자가 폴더를 `buildlog` → `buildlog_showcase`로 바꿈: "`buildlog`는 앞으로 실제로 만들 프로젝트, 쇼케이스는 홍보 사이트". 이어서 "GitHub·Vercel도 바꿔야 한다", "`buildlog-showcase`로 일괄 통일이 낫지 않나?" → 하이픈으로 통일(Vercel 프로젝트 이름이 곧 호스트명이라 밑줄 불가). 폴더·GitHub(`gh repo rename`)·Vercel(`vercel project rename` + `vercel git connect`)·package.json·metadataBase·OG 이미지·문서 전부 갱신, 옛 도메인 `buildlog-opal.vercel.app` 제거. 커밋 fbbc439·d6ec872, push·자동 배포 확인.
-. (2026-09-18) 사용자 "섹션 디자인 개선. awesome-design-md를 딥리서치해 현재 톤앤매너로 시안 3개를 html로 Orca 브라우저에서" → 25개 DESIGN.md 조사, 시안 A 개발 로그 / B 목업 무대 / C 코발트 블록을 scratchpad HTML로 만들어 Orca 탭에 띄움. 결과 보고를 영어로 썼다가 "영어로 뭐라고 하는거냐" 지적(응답은 모두 한국어). 이어서 "마지막 커밋에 1차완료 태그를 단 후 C안만 적용해서 main에 커밋/푸시" → 태그 `1차완료`(915f0c7), C안 적용(`docs/03` 3절), lint·typecheck·build·Playwright 검증, `DESIGN.md` 1.2·기획서 2.3 동기화, 커밋·push.
+13. (2026-09-17) 사용자 "쇼케이스가 아닌 실제 buildlog 사이트를 만들기 위한 기획을 Codex에 넘길 핸드오프를 만들어 달라" → `HANDOFF_BUILDLOG.md`(258줄) 작성. 근거: `docs/01~04`·`DESIGN.md`·`app/page.tsx` 카피, ChatGPT 대화 추출본 전체(에이전트가 4,502줄을 읽고 결정/제안/보류로 분류). 커밋·push(f043160).
+14. (2026-09-18) 사용자 "섹션 디자인 개선. awesome-design-md를 딥리서치해 현재 톤앤매너로 시안 3개를 html로 Orca 브라우저에서" → 25개 DESIGN.md 조사, 시안 A 개발 로그 / B 목업 무대 / C 코발트 블록을 scratchpad HTML로 만들어 Orca 탭에 띄움. 결과 보고를 영어로 썼다가 "영어로 뭐라고 하는거냐" 지적(응답은 모두 한국어). 이어서 "마지막 커밋에 1차완료 태그를 단 후 C안만 적용해서 main에 커밋/푸시" → 태그 `1차완료`(915f0c7), C안 적용(`docs/03` 3절), lint·typecheck·build·Playwright 검증, `DESIGN.md` 1.2·기획서 2.3 동기화, . (2026-09-18) 사용자 "시안들은 정리 되었나?" → 로컬 시안 서버 정지, Orca 시안 탭 닫음, 시안 A·B·C HTML을 `_workspace/design-drafts-2026-09-18/`(Git 제외)로 보관, 핸드오프 갱신 후 커밋·push.
+15. (2026-09-18) 사용자 "시안들은 정리 되었나?" → 로컬 시안 서버 정지, Orca 시안 탭 닫음, 시안 A·B·C HTML을 `_workspace/design-drafts-2026-09-18/`(Git 제외)로 보관, 핸드오프 갱신 후 커밋·push.
 
 ## 4. 다음 순서
 
-0. v2.5(시안 C) 운영 화면을 사용자가 확인. 마음에 들지 않으면 태그 `1차완료`로 되돌릴 수 있다. 판단 항목 중 "태그라인 칩 제거·섹션 위 라벨 제거"는 C안에서 알약 라벨로 유지됐다.
+0. v2.5(시안 C) 운영 화면을 사용자가 확인. 마음에 들지 않으면 태그 `1차완료`로 되돌릴 수 있다. 판단 항목 중 "태그라인 칩 제거·섹션 위 라벨 제거"는 C안에서 알약 라벨로 유지됐다. 다른 시안(A 개발 로그·B 목업 무대)은 `_workspace/design-drafts-2026-09-18/`에서 `python3 -m http.server`로 다시 볼 수 있다.
 1. ~~사용자가 v2.3을 보고 판정~~ → 그림자·캡션·색 피드백 반영 후 커밋·push 완료. 새 운영 URL https://buildlog-showcase.vercel.app 에서 이름 전환과 v2.4를 최종 확인(자동 확인은 끝남: 200, 제목, og:image. 사용자 눈 확인은 아직).
 2. 판단 항목 결정: 히어로 태그라인 칩 제거? 섹션 위 라벨(올리기/피드/프로젝트 페이지) 제거? 피드 목업을 카드 대신 구분선으로? 타이머 민트 `#2dd4bf` 교체?
 3. ~~커밋·push~~ 완료(2026-09-16). ~~이름 전환 buildlog → buildlog-showcase~~ 완료(2026-09-17).
@@ -77,7 +79,7 @@
 | `docs/01~03` | v2.2 갱신. 커밋됨 |
 | `docs/04`, `docs/README.md`, `AGENTS.md` | v2.1. 커밋됨 |
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
-| `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
+| `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록, 디자인 시안 A·B·C(`design-drafts-2026-09-18/`). Git 제외 |
 | `app/wrap.ts`(신규) `app/page.tsx` `app/page.module.css` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | v2.4 semantic-wrap. 커밋됨 |
 | `app/page.tsx` `app/page.module.css` `DESIGN.md` `CLAUDE.md` `HANDOFF.md` `docs/01` `docs/03` | v2.5 시안 C. 커밋됨 |
 | `app/layout.tsx` `app/opengraph-image.png` `docs/og/og-source.html` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | 이름 전환(buildlog → buildlog-showcase). 커밋됨(fbbc439, d6ec872) |
