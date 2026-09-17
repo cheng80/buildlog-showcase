@@ -8,7 +8,7 @@
 |---|---|
 | 서비스 이름 | **빌드로그** (사용자 결정, `app/site.ts`의 `SERVICE`) |
 | 작업 폴더 | 이 저장소 `buildlog-showcase/` (Next.js 프로젝트 + 기획 문서). 2026-09-17에 `buildlog/`에서 이름을 바꿨다: `buildlog`는 앞으로 실제로 만들 서비스 프로젝트에 쓰고, 이 저장소는 그 서비스를 홍보하는 사이트다. 같은 날 GitHub 저장소(cheng80/buildlog-showcase)와 Vercel 프로젝트(buildlog-showcase)도 같은 이름으로 바꿨다. 이 파일은 저장소 루트에 있다 |
-| 현재 단계 | **v2.4(semantic-wrap 의미 단위 줄바꿈) 커밋·push 완료, 운영 자동 배포** |
+| 현재 단계 | **이름 전환(buildlog → buildlog-showcase) 커밋·push 완료, 운영 자동 배포. v2.4 줄바꿈 포함** |
 | 바로 할 일 | 운영 URL에서 v2.4 줄바꿈 확인 → 판단 항목 4개 결정(`docs/03` 6절). 문구를 바꾸면 `docs/og/og-source.html`도 맞추고 OG PNG 재렌더링 |
 | 공개 URL | **https://buildlog-showcase.vercel.app** (운영, 공개). `buildlog-showcase-virtues1.vercel.app`은 SSO 보호 |
 | 정본 문서 | `CLAUDE.md`(작업 지침), `docs/01_PRODUCT_SPEC.md` v2.1(구조·카피·규칙), `DESIGN.md`(디자인 토큰), `docs/02_TECH_SPEC.md`, `docs/03_PROJECT_STATUS.md`(진행·검증) |
@@ -72,7 +72,7 @@
 | `public/infographics/`, `scripts/` | 삭제 커밋됨 |
 | `_workspace/` | ChatGPT 대화 추출본, 이전 윤문 기록. Git 제외 |
 | `app/wrap.ts`(신규) `app/page.tsx` `app/page.module.css` `package.json` `package-lock.json` `CLAUDE.md` `docs/02~03` `HANDOFF.md` | v2.4 semantic-wrap. 커밋됨 |
-| Git | `origin` = https://github.com/cheng80/buildlog-showcase.git (push 완료). 마지막 커밋: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
+| Git | `origin` = https://github.com/cheng80/buildlog-showcase.git (push 완료). 마지막 커밋: 이름 전환 buildlog → buildlog-showcase fbbc439 (2026-09-17). 그 전: v2.4 semantic-wrap 의미 단위 줄바꿈 (2026-09-16). `HANDOFF.md`는 저장소 루트로 옮김(2026-09-16) |
 
 ## 7. 환경 메모
 
